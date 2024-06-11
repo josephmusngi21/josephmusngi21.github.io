@@ -1,0 +1,114 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@255&display=swap');
+/*
+font-family: "Oswald", sans-serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200&display=swap');
+/*
+font-family: "Montserrat", sans-serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&family=Oswald:wght@255&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+/*
+font-family: "Platypi", serif;
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Oswald", sans-serif;
+    background: #FAF9F6;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 100vh auto;
+    grid-template-columns: 130px auto;
+    grid-template-areas: 
+    'sidebar header right-nav'
+    'sidebar main right-nav'
+    'sidebar main right-nav';
+    height: 100vh;
+}
+
+
+/*Layout*/
+.main{
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+    justify-content: space-around;
+    width: 60%;
+}
+/*Formatting*/
+@media (max-width: 625px) {
+    .main {
+        padding-top: 0;
+    }
+
+    body {
+        display: block;
+        width: 400px auto;
+    }
+    .sidebar {
+        display: block;
+        height: 56px;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .sidebar-item {
+        display: flex;
+        margin-right: 30px;
+    }
+    
+    .info {
+        margin: 140px 30px;
+        display: block;
+        align-items: center;
+    }
+}
+
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 0 0;
+}
+
+.sidebar a{
+    text-decoration: none;
+    color: black;
+}
+.right-nav {
+    width: 60%;
+    height: 100%;
+    padding: 0 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.nav-link{
+    font-family: "Platypi", serif;
+    font-weight: 80;
+    margin: 20px 0;
+    padding: 0;
+    font-size: 120px;
+    margin: 20px 60px ;
+    text-decoration: none;
+    color: black;
+    font-size: 5.5rem;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    font-style: italic;
+}
