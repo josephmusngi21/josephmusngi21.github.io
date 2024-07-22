@@ -1,16 +1,6 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@255&display=swap');
-/*
-font-family: "Oswald", sans-serif;
-*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200&display=swap');
-/*
-font-family: "Montserrat", sans-serif;
-*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&family=Oswald:wght@255&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
-/*
-font-family: "Platypi", serif;
-*/
 
 * {
     padding: 0;
@@ -30,8 +20,6 @@ body {
     height: 100vh;
 }
 
-
-/*Layout*/
 .main{
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
@@ -39,34 +27,6 @@ body {
     flex-direction: column;
     padding-top: 300px;
     justify-content: space-around;
-}
-/*Formatting*/
-@media (max-width: 625px) {
-    .main {
-        padding-top: 0;
-    }
-
-    body {
-        display: block;
-        width: 400px auto;
-    }
-    .sidebar {
-        display: block;
-        height: 56px;
-        justify-content: space-between;
-        margin-top: 30px;
-    }
-
-    .sidebar-item {
-        display: flex;
-        margin-right: 30px;
-    }
-    
-    .info {
-        margin: 140px 30px;
-        display: block;
-        align-items: center;
-    }
 }
 
 .sidebar {
@@ -82,17 +42,25 @@ body {
     text-decoration: none;
     color: black;
 }
+
 .right-nav {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     height: 100%;
+    overflow-y: auto; /* Add this line */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
 }
 
 .nav-link{
     font-family: "Platypi", serif;
     font-weight: 100;
-    margin: 20px 0;
+    margin: 10px 0; /* Reduce the margin */
     padding: 0;
     font-size: 130px;
     margin-left: 100px;
@@ -103,4 +71,40 @@ body {
 .nav-link:hover {
     text-decoration: underline;
     font-style: italic;
+}
+
+@media (max-width: 1030px) {
+    .main {
+        padding-top: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .sidebar {
+        display: flex;
+        height: 56px;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .sidebar-item {
+        display: flex;
+        margin-right: 30px;
+    }
+    
+    .info {
+        margin: 140px 30px;
+        display: block;
+        align-items: center;
+    }
+
+    .right-nav {
+        order: 2;
+        align-self: center;
+    }
 }
