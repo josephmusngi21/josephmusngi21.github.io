@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "canyon-run",
+    "title": "Canyon Run",
+    "category": "React Native Mobile App",
+    "description": "Canyon Run is a React Native app that helps runners track and visualize their routes using GPS.",
+    "overview": "A mobile running companion with interactive route visualization, altitude stats, and auto-saving so the user never loses a run in progress.",
+    "techStack": ["React Native", "GPS Tracking", "Interactive Maps", "iOS", "Android"],
+    "repoUrl": "https://github.com/josephmusngi21/Canyon-Run",
+    "demoUrl": "",
+    "highlights": ["Interactive maps", "Altitude summaries", "Auto-saving"],
+    "demoTitle": "Route tracking that stays visible while you run",
+    "demoDescription": "The app centers the map, route path, and stats so runners can see distance, elevation, and progress without digging through menus.",
+    "demoBullets": ["Live GPS route visualization", "Altitude and pace stats", "Works on iOS and Android"],
+    "codeTitle": "Route state update flow",
+    "codeLanguage": "tsx",
+    "codeExample": "function saveRoute(route) {\n  const nextRoutes = [...savedRoutes, route];\n  setSavedRoutes(nextRoutes);\n  persistRoutes(nextRoutes);\n}",
+    "diagramTitle": "How the run session flows",
+    "diagramSteps": [
+      {"title": "Capture", "detail": "GPS points are collected while the runner is moving."},
+      {"title": "Visualize", "detail": "The route is drawn on the map with supporting altitude stats."},
+      {"title": "Persist", "detail": "Sessions are auto-saved so the user can review them later."}
+    ],
+    "systemDesign": "The app is organized around a lightweight session model: capture location updates, render the path in real time, and persist the completed route for later review. That keeps the UI responsive while still making the run data durable.",
+    "learned": "I learned how important state recovery is in mobile apps, especially when GPS data and autosave need to feel seamless to the user."
+  },
+  {
+    "slug": "insert",
+    "title": "Insert",
+    "category": "React Native Recipe App",
+    "description": "Recipe app built with React Native, MongoDB, and AWS.",
+    "overview": "A cross-platform recipe experience with cloud-backed data storage and a mobile-first interface for browsing and saving meals.",
+    "techStack": ["React Native", "MongoDB", "AWS", "Mobile UX"],
+    "repoUrl": "https://github.com/josephmusngi21/Insert",
+    "demoUrl": "",
+    "highlights": ["Cloud database support", "Recipe browsing", "Mobile-first UI"],
+    "demoTitle": "Recipe discovery built for mobile",
+    "demoDescription": "The layout is designed around quick browsing, recipe previews, and straightforward save actions so users can move fast in the kitchen.",
+    "demoBullets": ["Recipe list and detail views", "MongoDB-backed content", "AWS deployment path"],
+    "codeTitle": "Recipe fetch pattern",
+    "codeLanguage": "tsx",
+    "codeExample": "async function loadRecipes() {\n  const response = await fetch('/api/recipes');\n  const recipes = await response.json();\n  setRecipes(recipes);\n}",
+    "diagramTitle": "Recipe app architecture",
+    "diagramSteps": [
+      {"title": "Request", "detail": "The mobile app requests recipe data from the backend."},
+      {"title": "Store", "detail": "MongoDB keeps the recipe content and user data organized."},
+      {"title": "Deliver", "detail": "AWS hosts the app and makes the experience accessible across devices."}
+    ],
+    "systemDesign": "The system separates the mobile UI from the persistent data layer, which keeps the app easier to scale and simpler to maintain. MongoDB provides flexible content storage while AWS handles deployment and availability.",
+    "learned": "I learned how to combine mobile UX with a cloud-backed architecture so the product can grow beyond a local prototype."
+  },
+  {
+    "slug": "esp32-tamagotchi-clone",
+    "title": "ESP32-Tamogatchi-Clone",
+    "category": "Embedded Systems Project",
+    "description": "ESP32-based Tamagotchi clone featuring SSD1306 OLED display, three GPIO buttons, and active buzzer interaction.",
+    "overview": "A playful embedded project that combines hardware buttons, display output, and sound feedback to recreate the classic virtual pet experience.",
+    "techStack": ["ESP32", "Arduino", "SSD1306 OLED", "GPIO", "Buzzer"],
+    "repoUrl": "https://github.com/josephmusngi21/ESP32-Tamagotchi-Clone",
+    "demoUrl": "",
+    "highlights": ["OLED display output", "Button input handling", "Active buzzer feedback"],
+    "demoTitle": "A tiny pet with real hardware feedback",
+    "demoDescription": "The display, buttons, and buzzer work together to give the user visible and audible feedback as the virtual pet changes state.",
+    "demoBullets": ["SSD1306 OLED screen", "Three-button controls", "Active buzzer responses"],
+    "codeTitle": "Input handling loop",
+    "codeLanguage": "cpp",
+    "codeExample": "void loop() {\n  readButtons();\n  updatePetState();\n  renderDisplay();\n  playBuzzerFeedback();\n}",
+    "diagramTitle": "Embedded interaction flow",
+    "diagramSteps": [
+      {"title": "Input", "detail": "GPIO buttons capture the player’s actions."},
+      {"title": "Process", "detail": "The ESP32 updates the pet’s state and logic."},
+      {"title": "Output", "detail": "The OLED and buzzer provide visible and audible feedback."}
+    ],
+    "systemDesign": "The project uses a simple embedded event loop: capture button input, update the virtual pet state, and reflect that state on the OLED with sound cues. That keeps the logic predictable and easy to debug on hardware.",
+    "learned": "I learned how hardware constraints shape software design, especially when you need fast, understandable feedback from a very small interface."
+  }
+]

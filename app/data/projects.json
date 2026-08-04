@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "canyon-run",
+    "title": "Canyon Run",
+    "description": "An Expo React Native GPS tracker that records canyon routes, stores run files offline, and visualizes paths and elevation profiles with interactive map controls.",
+    "techStack": ["React Native", "Expo", "JavaScript", "expo-location", "expo-file-system", "react-native-svg"],
+    "repoUrl": "https://github.com/josephmusngi21/Canyon-Run",
+    "demoTitle": "Track, save, and inspect route sessions",
+    "demoDescription": "Users start a tracked run, capture points by time or distance intervals, save runs to local JSON, and inspect route geometry or elevation trends from a dedicated map view.",
+    "demoBullets": [
+      "Foreground GPS tracking with configurable interval mode",
+      "JSON import/export flow for portable run archives",
+      "Interactive map rendering with pinch-zoom, pan, and point detail modal"
+    ],
+    "highlights": [
+      "Track screen captures coordinates from expo-location and computes distance with Haversine logic.",
+      "Run files are normalized by dataManager into a stable schema with start/end metadata and coordinate arrays.",
+      "Map screen converts geo coordinates to screen space and supports touch-based point inspection.",
+      "Elevation chart can be rendered as both an inline mode in Maps and a dedicated SVG altitude component."
+    ],
+    "architecture": [
+      {
+        "title": "App shell and view switching",
+        "detail": "App.jsx gates access behind a FileManager step, then hands control to ViewSelector which toggles Tracker and Maps views while sharing selected run state."
+      },
+      {
+        "title": "Tracking pipeline",
+        "detail": "Track.jsx subscribes to Location.watchPositionAsync and records points using either elapsed time thresholds or distance deltas before persisting route snapshots."
+      },
+      {
+        "title": "Persistence and export",
+        "detail": "utils/dataManager.js handles JSON conversion, local reads/writes, user document picking, and share-based export so captured sessions remain portable."
+      },
+      {
+        "title": "Map and profile rendering",
+        "detail": "Maps.jsx and Altitude.jsx process route coordinates into SVG path data, calculate per-point metrics, and expose map/elevation inspection tools."
+      }
+    ],
+    "codeTitle": "Distance and tracking decision logic",
+    "codeLanguage": "tsx",
+    "codeExample": "const distance = calculateDistance(\n  lastRecordedLocation.latitude,\n  lastRecordedLocation.longitude,\n  latitude,\n  longitude\n);\n\nconst shouldRecord = timeUnit === 'm' || timeUnit === 's'\n  ? (currentTime - lastRecordTime) >= intervalInMs\n  : distance >= trackingInterval;\n\nif (shouldRecord) {\n  setRouteJson((prev) => [...prev, { longitude, latitude, altitude, timestamp: currentTime }]);\n}",
+    "systemDesignTitle": "Offline-first mobile route telemetry",
+    "systemDesign": "Canyon Run separates capture, storage, and visualization into focused modules: tracker logic produces point streams, dataManager serializes route files, and maps/altitude views consume standardized data. This modularity makes it easier to iterate on visualization without risking capture reliability.",
+    "challenges": [
+      {
+        "title": "Balancing data fidelity and performance",
+        "detail": "Raw GPS streams can become dense, so the map layer includes simplification for large point sets while preserving start/end markers and detail tap behavior."
+      },
+      {
+        "title": "Portable user-managed storage",
+        "detail": "Instead of locking data to one app path, the file flow supports load/create/export interactions so users can keep and move historical run files."
+      },
+      {
+        "title": "Multiple interaction modes in one screen",
+        "detail": "Maps supports pinch, directional panning, route point taps, and view switching; careful state partitioning prevents control collisions."
+      }
+    ],
+    "learned": "This project reinforced practical mobile architecture: isolate sensor capture from rendering concerns, normalize data early, and keep each UI mode resilient to missing or noisy input.",
+    "diagramSteps": [
+      {
+        "title": "Capture",
+        "detail": "Track.jsx collects location updates and builds route point arrays with timestamps and altitude."
+      },
+      {
+        "title": "Normalize and persist",
+        "detail": "dataManager converts run payloads into a canonical JSON shape and handles local file reads/writes and exports."
+      },
+      {
+        "title": "Visualize",
+        "detail": "Maps and Altitude modules transform coordinate data into route polylines, elevation paths, and tap-selectable point insights."
+      }
+    ]
+  },
+  {
+    "slug": "insert",
+    "title": "Insert",
+    "description": "A cross-platform kitchen management app built with Expo and Firebase, combining recipes, pantry inventory, shopping lists, nutrition analysis, and social sharing.",
+    "techStack": ["React Native", "Expo Router", "TypeScript", "Firebase Auth", "Firestore", "Firebase Storage", "React Native Reanimated"],
+    "repoUrl": "https://github.com/josephmusngi21/Insert",
+    "demoTitle": "A unified kitchen workflow from recipe to pantry",
+    "demoDescription": "Insert blends multiple kitchen surfaces into one app: create or import recipes, estimate macros, move ingredients into shopping or pantry flows, and share cooking activity socially.",
+    "demoBullets": [
+      "Multi-screen app shell with swipeable tabs and detail transitions",
+      "Firestore-centered data model under users/{uid}/... collections",
+      "Nutrition estimation engine with fallback food references and optional USDA API enrichment"
+    ],
+    "highlights": [
+      "Auth and app boot are orchestrated in app/index.tsx with onAuthStateChanged and animated screen transitions.",
+      "Recipe lifecycle spans RecipeFormScreen, RecipeListScreen, and RecipeDetailScreen with import, edit, delete, and sharing flows.",
+      "Centralized Firestore path helpers in userDataService.ts keep collection/document access consistent across modules.",
+      "nutritionUtils.ts computes macro summaries per ingredient and per serving, optionally augmenting estimates through USDA search."
+    ],
+    "architecture": [
+      {
+        "title": "Navigation and shell composition",
+        "detail": "The root index screen coordinates tab state, gesture-driven transitions, and detail overlays while composing Home, Pantry, Recipes, Shopping, Social, and More modules."
+      },
+      {
+        "title": "Data access contract",
+        "detail": "firebase/userDataService.ts defines typed references for user profile, pantry, pending pantry, recipes, shopping, settings, and related social artifacts."
+      },
+      {
+        "title": "Recipe and nutrition pipeline",
+        "detail": "Recipe screens gather ingredient data, derive macro totals through estimateRecipeMacros, and persist enriched recipe documents to private and public collections."
+      },
+      {
+        "title": "Real-time collaboration features",
+        "detail": "Social and More screens subscribe to friend requests, notifications, and shared content using Firestore onSnapshot listeners for live updates."
+      }
+    ],
+    "codeTitle": "Macro estimation with optional USDA lookup",
+    "codeLanguage": "ts",
+    "codeExample": "const nutritionSummary = await estimateRecipeMacros(ingredients, servings);\n\nawait addDoc(recipesCol(userId), {\n  userId,\n  name: newRecipe.name,\n  ingredients,\n  servings,\n  nutritionSummary,\n  calories: nutritionSummary.perServing.calories,\n  originType: sourceUrl ? 'imported' : 'created'\n});",
+    "systemDesignTitle": "Feature-rich React Native + Firebase architecture",
+    "systemDesign": "Insert uses a domain-oriented screen architecture backed by a strict Firestore path model. Core modules (recipes, pantry, shopping, social, settings) remain decoupled at the UI level but share services for auth, persistence, and nutrition logic, enabling incremental feature growth without collapsing into one monolithic screen.",
+    "challenges": [
+      {
+        "title": "Managing broad app scope without brittle coupling",
+        "detail": "A kitchen app can sprawl quickly, so the implementation leans on explicit data services and typed screen props to keep module boundaries clear."
+      },
+      {
+        "title": "Keeping derived nutrition data trustworthy",
+        "detail": "The app combines local macro references and USDA responses, then stores coverage/source metadata to make nutrition confidence transparent."
+      },
+      {
+        "title": "Maintaining responsive UX with real-time streams",
+        "detail": "Multiple onSnapshot feeds run simultaneously (recipes, requests, notifications), requiring disciplined state updates and selective memoization in heavy screens."
+      }
+    ],
+    "learned": "Building Insert highlighted how important clear data contracts are in React Native apps. A strong service layer and typed payloads make advanced features like social recipe sharing and nutrition analysis much easier to evolve safely.",
+    "diagramSteps": [
+      {
+        "title": "Authenticate",
+        "detail": "Firebase Auth establishes session identity and unlocks user-scoped Firestore collections."
+      },
+      {
+        "title": "Create and enrich content",
+        "detail": "Users add recipes or pantry items, and helper utilities compute derived metrics such as macro summaries and ingredient compatibility."
+      },
+      {
+        "title": "Sync and share",
+        "detail": "Firestore listeners propagate recipe, social, and settings updates in real time across app surfaces."
+      }
+    ]
+  },
+  {
+    "slug": "esp32-tamagotchi-clone",
+    "title": "ESP32 Tamagotchi Clone",
+    "description": "An embedded virtual pet game on ESP32 with OLED rendering, adaptive pet personality logic, button-based mini-games, obstacle sensor events, and persistent save state.",
+    "techStack": ["C++", "Arduino", "PlatformIO", "Adafruit SSD1306", "ESP32 Preferences", "Embedded State Machines"],
+    "repoUrl": "https://github.com/josephmusngi21/ESP32-Tamagotchi-Clone",
+    "demoTitle": "State-driven firmware for a handheld virtual pet",
+    "demoDescription": "The firmware runs a non-blocking state machine across setup, egg hatch, idle care loop, mini-game, sleep, and game-over states while continuously rendering UI and handling sensor/button input.",
+    "demoBullets": [
+      "GPIO-wired controls with debounced multi-button input and cheat sequence parser",
+      "Adaptive pet personality brain in a dedicated module with event-based learning",
+      "Autosave and full restore using ESP32 Preferences with elapsed-time reconstruction"
+    ],
+    "highlights": [
+      "main.cpp defines hardware pins for OLED I2C, three input buttons, active buzzer, and obstacle sensor.",
+      "The runtime loop uses explicit game states and frame intervals to avoid blocking behavior.",
+      "pet_brain.cpp tracks personality traits and updates speech/personality labels based on player care patterns.",
+      "Persistence includes pet stats, schedule, minigame state, and personality fields for reboot continuity."
+    ],
+    "architecture": [
+      {
+        "title": "Hardware and IO layer",
+        "detail": "setup() configures GPIO23/18/19 buttons, GPIO4 obstacle input, GPIO15 buzzer output, and the SSD1306 display over GPIO21/22 I2C."
+      },
+      {
+        "title": "Gameplay state machine",
+        "detail": "loop() drives setup, egg, idle, minigame show/input, sleeping, and game-over branches with periodic redraws and deterministic transitions."
+      },
+      {
+        "title": "Adaptive personality subsystem",
+        "detail": "pet_brain.h/.cpp model traits, event learning, speech cadence, and decay behavior independent from rendering or IO code."
+      },
+      {
+        "title": "Persistence subsystem",
+        "detail": "saveGameState/loadGameState serialize runtime fields and reconstruct timers from elapsed deltas so progress resumes after power loss."
+      }
+    ],
+    "codeTitle": "Main loop orchestration",
+    "codeLanguage": "cpp",
+    "codeExample": "const bool pressA = consumePress(btnA, nowMs);\nconst bool pressB = consumePress(btnB, nowMs);\nconst bool pressC = consumePress(btnC, nowMs);\nconst bool obstacleDetected = consumeObstacleDetected(obstacleSensor, nowMs);\n\nif (gameState == STATE_IDLE) {\n  if (pressA && !cheatApplied) feedPet(nowMs);\n  if (pressB && !cheatApplied) beginMinigame(nowMs);\n  if (pressC && !cheatApplied) carePet(nowMs);\n}\n\nbrainObserve(petBrain, makeSnapshot(nowMs), nowMs);\nupdateGameOver();",
+    "systemDesignTitle": "Embedded event loop with modular intelligence",
+    "systemDesign": "The project cleanly splits firmware concerns: main.cpp owns hardware interaction and high-level game state transitions, pet_assets.cpp provides rendering sprites, and pet_brain.cpp encapsulates adaptive behavior. This separation keeps timing-sensitive loop code manageable while enabling independent iteration on personality design.",
+    "challenges": [
+      {
+        "title": "Coordinating many real-time concerns on microcontroller hardware",
+        "detail": "Input debouncing, buzzer pulses, stat decay, and frame rendering all run concurrently, so the solution uses timestamp-driven checks instead of blocking delays."
+      },
+      {
+        "title": "Persisting complex state safely",
+        "detail": "The save payload includes minigame progress and clock-relative values; elapsed-time encoding helps avoid invalid absolute timestamps after reboot."
+      },
+      {
+        "title": "Balancing game difficulty and personality behavior",
+        "detail": "Mini-game memory ceiling and pet trait learning require adaptive logic that feels responsive without becoming unpredictable or unfair."
+      }
+    ],
+    "learned": "This build improved my embedded systems discipline: explicit state machines, deterministic timing, and strict module boundaries are the difference between demo firmware and maintainable game logic.",
+    "diagramSteps": [
+      {
+        "title": "Sense",
+        "detail": "Read debounced button presses and obstacle sensor triggers each loop iteration."
+      },
+      {
+        "title": "Decide",
+        "detail": "Update gameplay state, adaptive personality, and stat decay using timestamp-based transition rules."
+      },
+      {
+        "title": "Render and persist",
+        "detail": "Draw current state to the OLED and autosave key runtime fields to Preferences at fixed intervals."
+      }
+    ]
+  }
+]

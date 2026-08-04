@@ -1,0 +1,25 @@
+import projects from "@/app/data/projects.json";
+import ProjectDetailContent from "@/app/components/ProjectDetailContent";
+
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export function generateMetadata({ params }) {
+  const project = projects.find((item) => item.slug === params.slug) ?? projects[0];
+
+  return {
+    title: `${project.title} | Projects`,
+    description: project.description,
+  };
+}
+
+export const dynamicParams = false;
+
+# Project Detail
+
+A deeper look at the design, code, and architecture behind one of my portfolio projects.
+
+<ProjectDetailContent />
