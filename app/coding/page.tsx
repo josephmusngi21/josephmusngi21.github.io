@@ -52,7 +52,26 @@ async function getGitHubSummary() {
 }
 
 export default async function CodingPortfolioPage() {
-  const githubSummary = await getGitHubSummary();
+  const liveGitHubSummary = await getGitHubSummary();
+  const githubSummary =
+    liveGitHubSummary ??
+    {
+      profile: {
+        followers: 0,
+        public_repos: codingProjects.length,
+        html_url: githubProfileUrl,
+      },
+      repos: codingProjects.slice(0, 6).map((project, index) => ({
+        id: index + 1,
+        name: project.title,
+        html_url: project.repoUrl,
+        description: project.description,
+        stargazers_count: 0,
+        language: project.techStack[0] ?? null,
+        updated_at: new Date().toISOString(),
+      })),
+    };
+  const isFallbackSummary = !liveGitHubSummary;
 
   return (
     <main className="flex-1">
@@ -89,50 +108,50 @@ export default async function CodingPortfolioPage() {
             </Link>
           </div>
 
-          {githubSummary ? (
-            <>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Public repos</p>
-                  <p className="mt-2 text-3xl font-semibold text-slate-900">{githubSummary.profile.public_repos}</p>
-                </div>
-                <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Followers</p>
-                  <p className="mt-2 text-3xl font-semibold text-slate-900">{githubSummary.profile.followers}</p>
-                </div>
-                <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Recent repos shown</p>
-                  <p className="mt-2 text-3xl font-semibold text-slate-900">{githubSummary.repos.length}</p>
-                </div>
+          <>
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Public repos</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{githubSummary.profile.public_repos}</p>
               </div>
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Followers</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{githubSummary.profile.followers}</p>
+              </div>
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Recent repos shown</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{githubSummary.repos.length}</p>
+              </div>
+            </div>
 
-              <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                {githubSummary.repos.map((repo) => (
-                  <a
-                    key={repo.id}
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-2xl border border-stone-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-stone-300"
-                  >
-                    <p className="text-sm font-semibold text-slate-900">{repo.name}</p>
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">
-                      {repo.description || "No description provided yet."}
-                    </p>
-                    <div className="mt-3 flex items-center gap-3 text-xs text-stone-500">
-                      <span>{repo.language || "Language N/A"}</span>
-                      <span>•</span>
-                      <span>{repo.stargazers_count} stars</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </>
-          ) : (
-            <p className="mt-6 text-sm leading-7 text-slate-600">
-              GitHub data is temporarily unavailable right now, but the profile link above still works.
-            </p>
-          )}
+            {isFallbackSummary ? (
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                Live GitHub API data was unavailable during deploy, so this section is showing a portfolio-backed snapshot.
+              </p>
+            ) : null}
+
+            <div className="mt-6 grid gap-4 lg:grid-cols-2">
+              {githubSummary.repos.map((repo) => (
+                <a
+                  key={repo.id}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-2xl border border-stone-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-stone-300"
+                >
+                  <p className="text-sm font-semibold text-slate-900">{repo.name}</p>
+                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">
+                    {repo.description || "No description provided yet."}
+                  </p>
+                  <div className="mt-3 flex items-center gap-3 text-xs text-stone-500">
+                    <span>{repo.language || "Language N/A"}</span>
+                    <span>•</span>
+                    <span>{repo.stargazers_count} stars</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </>
         </section>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
