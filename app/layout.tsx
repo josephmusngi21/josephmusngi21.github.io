@@ -31,6 +31,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <html
       lang="en"
@@ -61,7 +63,59 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </nav>
           </div>
         </header>
-        {children}
+        <main className="flex-1">{children}</main>
+        <footer className="mt-10 border-t border-slate-300 bg-slate-900 text-slate-200">
+          <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-10 sm:px-8 lg:grid-cols-3 lg:px-10">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400">Joseph Musngi</p>
+              <p className="text-sm text-slate-300">Software Developer Portfolio</p>
+              <p className="text-xs text-slate-400">© {currentYear} All rights reserved.</p>
+            </div>
+
+            <nav aria-label="Footer navigation" className="space-y-2">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400">Navigation</p>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                <Link href="/about" className="transition-colors hover:text-white">
+                  About
+                </Link>
+                <Link href="/projects" className="transition-colors hover:text-white">
+                  Projects
+                </Link>
+                <Link href="/coding" className="transition-colors hover:text-white">
+                  Coding
+                </Link>
+                <Link href="/photography" className="transition-colors hover:text-white">
+                  Photography
+                </Link>
+              </div>
+            </nav>
+
+            <div className="space-y-2">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400">Connect</p>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                <a
+                  href="https://github.com/josephmusngi21"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  LinkedIn
+                </a>
+                <a href="mailto:josephmusngi21@gmail.com" className="transition-colors hover:text-white">
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );
