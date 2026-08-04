@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ProfileImage from "@/app/components/ProfileImage";
+import meImage from "@/app/about/me (1).jpg";
 
 export default function Home() {
   return (
@@ -16,6 +18,10 @@ export default function Home() {
             <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-600">
               Computer Science graduate. I build clean digital experiences, code modern apps, and explore photography when I want to think visually.
             </p>
+          </div>
+
+          <div className="mx-auto w-full max-w-xs">
+            <ProfileImage src={meImage} alt="Joseph Musngi portrait" />
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3">

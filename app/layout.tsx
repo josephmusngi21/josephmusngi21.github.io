@@ -14,8 +14,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://josephmusngi21.github.io"),
   title: "Joseph Musngi | Developer Portfolio",
   description: "Joseph Musngi's portfolio with projects, skills, and about information.",
+  openGraph: {
+    title: "Joseph Musngi | Developer Portfolio",
+    description: "Joseph Musngi's portfolio with projects, skills, and about information.",
+    images: ["/boy.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Joseph Musngi | Developer Portfolio",
+    description: "Joseph Musngi's portfolio with projects, skills, and about information.",
+    images: ["/boy.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
