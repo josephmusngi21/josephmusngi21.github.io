@@ -7,9 +7,6 @@ import Link from "next/link";
 const photographyDirectory = path.join(process.cwd(), "public/photography");
 const aspectClasses = ["aspect-4/5", "aspect-square", "aspect-3/4", "aspect-5/4"];
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 function buildGalleryItems() {
   return fs
     .readdirSync(photographyDirectory)
