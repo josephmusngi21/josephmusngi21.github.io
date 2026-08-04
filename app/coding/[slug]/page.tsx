@@ -78,10 +78,15 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
               </Link>
               {project.demoUrl ? (
                 <Link href={project.demoUrl} target="_blank" rel="noreferrer" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-stone-300 hover:bg-white">
-                  Live Demo
+                  Demo Link
                 </Link>
               ) : null}
             </div>
+            {!project.demoUrl ? (
+              <p className="text-sm text-slate-500">
+                No public live demo is available yet. Use the GitHub repo for source code and setup.
+              </p>
+            ) : null}
           </div>
 
           <div className="rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">

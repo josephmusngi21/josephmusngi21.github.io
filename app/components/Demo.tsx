@@ -15,7 +15,7 @@ export default function Demo({ title, description, bullets }: DemoProps) {
 
       <div className="rounded-2xl border border-stone-200 bg-gradient-to-br from-stone-50 via-white to-amber-50/60 p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
-          Live Demo
+          Project Walkthrough
         </p>
         <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
           {title}
