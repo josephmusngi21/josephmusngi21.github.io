@@ -28,7 +28,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link href="/about" className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
+            <Link href="/about" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
               About
             </Link>
             <Link href="/coding" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
@@ -39,13 +39,17 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
-            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Front-end development</span>
-            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Hiking</span>
-            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Climbing</span>
-            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Tennis</span>
-            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Bowling</span>
-            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Photography</span>
+          <div className="mx-auto max-w-3xl rounded-3xl border border-stone-200 bg-white/70 px-5 py-4 text-left shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Interests And Focus</p>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-medium uppercase tracking-[0.12em] text-slate-600">
+              <span className="rounded-full bg-stone-100 px-3 py-2">Front End</span>
+              <span className="rounded-full bg-stone-100 px-3 py-2">Back End</span>
+              <span className="rounded-full bg-amber-50 px-3 py-2 text-amber-900">Hiking</span>
+              <span className="rounded-full bg-amber-50 px-3 py-2 text-amber-900">Climbing</span>
+              <span className="rounded-full bg-amber-50 px-3 py-2 text-amber-900">Tennis</span>
+              <span className="rounded-full bg-amber-50 px-3 py-2 text-amber-900">Bowling</span>
+              <span className="rounded-full bg-amber-50 px-3 py-2 text-amber-900">Photography</span>
+            </div>
           </div>
 
           <div className="mx-auto grid max-w-5xl gap-4 text-left sm:grid-cols-2 lg:grid-cols-3">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import SiteNavLink from "./components/SiteNavLink";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,19 +45,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/" className="text-sm font-semibold tracking-[0.2em] uppercase text-slate-900">
               Joseph Musngi
             </Link>
-            <nav aria-label="Main navigation" className="flex items-center gap-6 text-sm text-slate-600">
-              <Link href="/" className="transition-colors hover:text-slate-900">
-                Home
-              </Link>
-              <Link href="/about" className="transition-colors hover:text-slate-900">
-                About
-              </Link>
-              <Link href="/coding" className="transition-colors hover:text-slate-900">
-                Coding
-              </Link>
-              <Link href="/photography" className="transition-colors hover:text-slate-900">
-                Photography
-              </Link>
+            <nav aria-label="Main navigation" className="flex items-center gap-2 text-sm text-slate-600">
+              <SiteNavLink href="/" label="Home" />
+              <SiteNavLink href="/about" label="About" />
+              <SiteNavLink href="/coding" label="Coding" />
+              <SiteNavLink href="/photography" label="Photography" />
             </nav>
           </div>
         </header>

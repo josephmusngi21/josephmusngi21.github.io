@@ -75,23 +75,41 @@ const lifestylePhotos = [
 export default function AboutPage() {
   return (
     <main className="flex-1">
-      <section className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-16 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:px-10 lg:py-24">
-        <div className="flex flex-col items-center gap-8 text-center lg:items-start lg:text-left">
-          <div className="w-full max-w-md rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
-            <ProfileImage src={meImage} alt="Joseph Musngi profile photo" />
-          </div>
-
-          <div className="max-w-xl space-y-5">
+      <section className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <div className="space-y-6 rounded-4xl border border-stone-200 bg-white/90 p-8 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)] lg:p-10">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500">
               About Me
             </p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Joseph Musngi
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              The person behind the projects.
             </h1>
-            <p className="text-base leading-8 text-slate-600">
-              Hi, I’m Joseph Musngi — a Software Engineering graduate from the University of Arizona with a strong passion for front-end development and a growing interest in back-end engineering. I love building clean, interactive, and user-focused applications, and I’m always looking for ways to improve my skills and expand my knowledge across the full stack. I’ve completed coursework in Data Structures, Algorithms, and Full Stack Development, and I’ve built projects that reflect my interest in both design and engineering. I have solid experience with Python, JavaScript, HTML, CSS, and C#, along with foundational knowledge in Java, SQL, C, and C++. I’m comfortable working with core data structures such as Linked Lists, Trees, Arrays, Stacks, Queues, Hash Tables, and Sets, and I enjoy applying these concepts to real projects. In the future, I hope to work as a Full Stack Developer or Data Scientist, where I can combine problem-solving, creativity, and technical depth. Outside of coding, I enjoy climbing, hiking, tennis, and bowling with friends — anything that gets me moving and lets me explore new experiences.
+            <p className="max-w-3xl text-base leading-8 text-slate-600">
+              Hi, I’m Joseph Musngi — a Software Engineering graduate from the University of Arizona with a strong passion for front-end development and a growing interest in back-end engineering. I love building clean, interactive, and user-focused applications, and I’m always looking for ways to improve my skills and expand my knowledge across the full stack.
             </p>
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <p className="max-w-3xl text-base leading-8 text-slate-600">
+              I’ve completed coursework in Data Structures, Algorithms, and Full Stack Development, and I’ve built projects that reflect my interest in both design and engineering. I have solid experience with Python, JavaScript, HTML, CSS, and C#, along with foundational knowledge in Java, SQL, C, and C++. I’m comfortable working with core data structures such as Linked Lists, Trees, Arrays, Stacks, Queues, Hash Tables, and Sets, and I enjoy applying these concepts to real projects.
+            </p>
+            <p className="max-w-3xl text-base leading-8 text-slate-600">
+              Outside of coding, I enjoy climbing, hiking, tennis, bowling, and photography. Those parts of my life keep me active, creative, and curious, which carries over into how I approach software and long-term growth.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Focus</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700">Frontend development, full-stack growth, and polished user experiences.</p>
+              </div>
+              <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Based In</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700">Arizona, with a lot of time spent outdoors, on courts, and around creative projects.</p>
+              </div>
+              <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Looking Ahead</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700">I want to keep growing into strong full-stack engineering roles and build products people enjoy using.</p>
+              </div>
+            </div>
+
+            <div className="inline-flex flex-wrap items-center gap-3">
               <Link
                 href="/"
                 className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-slate-800"
@@ -107,28 +125,62 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <section className="w-full rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
-                  Outside of Coding
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
-                  A few snapshots from life outside the screen
-                </h2>
-              </div>
+          <div className="grid gap-6">
+            <div className="rounded-4xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+              <ProfileImage src={meImage} alt="Joseph Musngi profile photo" />
             </div>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {lifestylePhotos.map((photo) => (
-                <article key={photo.title} className="overflow-hidden rounded-3xl border border-stone-200 bg-stone-50">
-                  <div className="relative aspect-4/5 w-full overflow-hidden">
+            <div className="rounded-4xl border border-stone-200 bg-linear-to-br from-stone-50 via-white to-amber-50 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
+                Outside of Coding
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
+                The interests that keep me balanced
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                Hiking, tennis, game days, and photography all give me a different kind of energy than coding. They help me reset, stay social, and bring a wider perspective back into my work.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-4xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)] lg:p-8">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
+              Photo Journal
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+              A few snapshots from life outside the screen
+            </h2>
+          </div>
+
+          <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+            <article className="overflow-hidden rounded-4xl border border-stone-200 bg-stone-50">
+              <div className="relative aspect-16/10 w-full overflow-hidden">
+                <Image
+                  src={lifestylePhotos[0].src}
+                  alt={lifestylePhotos[0].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                />
+              </div>
+              <div className="space-y-2 p-5">
+                <h3 className="text-lg font-semibold text-slate-900">{lifestylePhotos[0].title}</h3>
+                <p className="text-sm leading-7 text-slate-600">{lifestylePhotos[0].description}</p>
+              </div>
+            </article>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {lifestylePhotos.slice(1).map((photo) => (
+                <article key={photo.title} className="overflow-hidden rounded-4xl border border-stone-200 bg-stone-50">
+                  <div className="relative aspect-4/3 w-full overflow-hidden">
                     <Image
                       src={photo.src}
                       alt={photo.alt}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 50vw"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
                     />
                   </div>
                   <div className="space-y-2 p-4">
@@ -138,10 +190,11 @@ export default function AboutPage() {
                 </article>
               ))}
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
-        <div className="grid gap-6">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <div className="grid gap-6">
           <section className="rounded-3xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
             <div className="max-w-2xl">
               <h2 className="text-xl font-semibold text-slate-900">Skills</h2>
@@ -173,46 +226,49 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <section className="rounded-3xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
-            <h2 className="text-xl font-semibold text-slate-900">Interests</h2>
-            <div className="mt-5 flex flex-wrap gap-3">
-              {interests.map((interest) => (
-                <span
-                  key={interest}
-                  className="rounded-full bg-linear-to-r from-amber-100 to-rose-100 px-4 py-2 text-sm text-slate-700"
-                >
-                  {interest}
-                </span>
-              ))}
-            </div>
-          </section>
-
-          <section className="rounded-3xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
-            <h2 className="text-xl font-semibold text-slate-900">Contact</h2>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {contactLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.label === "Email" ? undefined : "_blank"}
-                  rel={link.label === "Email" ? undefined : "noreferrer"}
-                  className="group rounded-2xl border border-stone-200 bg-stone-50 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-stone-300 hover:bg-white"
-                >
-                  <p className="text-sm font-medium text-stone-500">{link.label}</p>
-                  <p className="mt-2 break-all text-sm text-slate-900 transition-colors group-hover:text-slate-700">
-                    {link.href.replace("mailto:", "")}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </section>
-
           <section className="rounded-3xl border border-stone-200 bg-linear-to-br from-sky-50 via-white to-amber-50 p-7 text-slate-900 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
             <h2 className="text-xl font-semibold">Fun Fact</h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               I like staying active outside of coding, whether that means climbing, hiking, or playing a quick match of tennis.
             </p>
           </section>
+          </div>
+
+          <div className="grid gap-6">
+            <section className="rounded-3xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+              <h2 className="text-xl font-semibold text-slate-900">Interests</h2>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {interests.map((interest) => (
+                  <span
+                    key={interest}
+                    className="rounded-full bg-linear-to-r from-amber-100 to-rose-100 px-4 py-2 text-sm text-slate-700"
+                  >
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-3xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+              <h2 className="text-xl font-semibold text-slate-900">Contact</h2>
+              <div className="mt-5 grid gap-3">
+                {contactLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.label === "Email" ? undefined : "_blank"}
+                    rel={link.label === "Email" ? undefined : "noreferrer"}
+                    className="group rounded-2xl border border-stone-200 bg-stone-50 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-stone-300 hover:bg-white"
+                  >
+                    <p className="text-sm font-medium text-stone-500">{link.label}</p>
+                    <p className="mt-2 break-all text-sm text-slate-900 transition-colors group-hover:text-slate-700">
+                      {link.href.replace("mailto:", "")}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </section>
     </main>
