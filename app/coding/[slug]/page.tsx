@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!project) {
     return {
-      title: "Project",
+      title: "Coding Project",
     };
   }
 
   return {
-    title: `${project.title} | Projects`,
+    title: `${project.title} | Coding`,
     description: project.description,
   };
 }
@@ -46,7 +46,7 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
       <section className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
         <div className="flex flex-wrap items-center gap-3 text-sm text-stone-500">
           <Link href="/coding" className="font-medium text-slate-700 hover:text-slate-900">
-            Projects
+            Coding
           </Link>
           <span>/</span>
           <span>{project.title}</span>
