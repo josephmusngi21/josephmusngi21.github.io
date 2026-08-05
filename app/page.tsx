@@ -16,7 +16,7 @@ export default function Home() {
               Hi, I’m Joseph Musngi.
             </h1>
             <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-600">
-              Computer Science graduate. I build clean digital experiences, code modern apps, and explore photography when I want to think visually.
+              Software Engineering graduate. I build clean digital experiences, code modern apps, and explore photography when I want to think visually.
             </p>
           </div>
 
