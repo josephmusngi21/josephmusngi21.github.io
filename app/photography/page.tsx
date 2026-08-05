@@ -44,10 +44,10 @@ export default function PhotographyPortfolioPage() {
               Photography Portfolio
             </p>
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              A clean film gallery that updates from your folder automatically.
+              Arizona moments captured on film.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              This page maps whatever images are currently in your photography folder. Add a photo and refresh to see it instantly.
+              These photos were taken in Arizona using a Canon AE-1 Program camera.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/" className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
@@ -59,19 +59,19 @@ export default function PhotographyPortfolioPage() {
             </div>
           </div>
 
-          <div className="grid gap-4 rounded-[2rem] border border-stone-200 bg-white/80 p-5 shadow-[0_24px_80px_-50px_rgba(15,23,42,0.18)] sm:grid-cols-3">
+          <div className="grid gap-4 rounded-4xl border border-stone-200 bg-white/80 p-5 shadow-[0_24px_80px_-50px_rgba(15,23,42,0.18)] sm:grid-cols-3">
             <div className="rounded-3xl border border-stone-200 bg-stone-50 p-4 sm:col-span-2">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Photos loaded</p>
               <p className="mt-2 text-3xl font-semibold text-slate-900">{galleryItems.length}</p>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Showing all image files from <span className="font-medium text-slate-900">public/photography</span>.
+                Current set from Arizona, photographed on a <span className="font-medium text-slate-900">Canon AE-1 Program</span>.
               </p>
             </div>
             <div className="rounded-3xl border border-stone-200 bg-linear-to-br from-stone-100 via-white to-amber-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Featured</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Camera note</p>
               <p className="mt-2 text-3xl font-semibold text-slate-900">{featuredCount}</p>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                A front row of highlights, followed by the full archive.
+                This portfolio is currently focused on work shot with the Canon AE-1 Program.
               </p>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function PhotographyPortfolioPage() {
             {featuredItems.map((item) => (
               <figure
                 key={item.fileName}
-                className="group overflow-hidden rounded-[2rem] border border-stone-200 bg-white/90 shadow-[0_18px_60px_-45px_rgba(15,23,42,0.24)]"
+                className="group overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-45px_rgba(15,23,42,0.24)]"
               >
                 <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
                   <Image
@@ -133,7 +133,7 @@ export default function PhotographyPortfolioPage() {
               {remainingItems.map((item) => (
                 <figure
                   key={item.fileName}
-                  className="mb-5 break-inside-avoid overflow-hidden rounded-[2rem] border border-stone-200 bg-white/90 shadow-[0_18px_60px_-50px_rgba(15,23,42,0.2)]"
+                  className="mb-5 break-inside-avoid overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-50px_rgba(15,23,42,0.2)]"
                 >
                   <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
                     <Image
