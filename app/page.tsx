@@ -32,7 +32,7 @@ export default function Home() {
               About
             </Link>
             <Link href="/coding" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
-              Projects
+              Coding
             </Link>
             <Link href="/photography" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
               Photography
@@ -55,7 +55,7 @@ export default function Home() {
               <p className="mt-2 text-sm leading-7 text-slate-600">A quick intro, skills, interests, and contact links.</p>
             </Link>
             <Link href="/coding" className="rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)] transition-transform hover:-translate-y-1">
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">Projects</p>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">Coding</p>
               <p className="mt-3 text-lg font-semibold text-slate-900">Portfolio deep dives</p>
               <p className="mt-2 text-sm leading-7 text-slate-600">Detailed breakdowns, repo snapshots, and public project work in one place.</p>
             </Link>
