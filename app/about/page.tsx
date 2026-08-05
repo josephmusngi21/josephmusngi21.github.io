@@ -48,24 +48,32 @@ const contactLinks = [
 const lifestylePhotos = [
   {
     src: "/about/img-1870.jpg",
+    width: 4032,
+    height: 3024,
     alt: "Joseph Musngi hiking outdoors",
     title: "Hiking trips",
     description: "I like getting outdoors, exploring new places, and spending time with friends on the trail.",
   },
   {
     src: "/about/img-3337.jpeg",
+    width: 4032,
+    height: 3024,
     alt: "Joseph Musngi hiking with friends in a red rock landscape",
     title: "More hiking",
     description: "A lot of my favorite time away from the computer is spent hiking, traveling, and finding places with great views.",
   },
   {
     src: "/about/fullsizerender.jpeg",
+    width: 1366,
+    height: 1860,
     alt: "Joseph Musngi playing tennis",
     title: "Tennis",
     description: "Tennis keeps me competitive, active, and focused on steady improvement.",
   },
   {
     src: "/about/img-2263.jpeg",
+    width: 4284,
+    height: 5712,
     alt: "Joseph Musngi at a football game",
     title: "Game days",
     description: "I enjoy being around sports, team energy, and the atmosphere of big events.",
@@ -154,42 +162,32 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-            <article className="overflow-hidden rounded-4xl border border-stone-200 bg-stone-50">
-              <div className="relative aspect-16/10 w-full overflow-hidden">
-                <Image
-                  src={lifestylePhotos[0].src}
-                  alt={lifestylePhotos[0].alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                />
-              </div>
-              <div className="space-y-2 p-5">
-                <h3 className="text-lg font-semibold text-slate-900">{lifestylePhotos[0].title}</h3>
-                <p className="text-sm leading-7 text-slate-600">{lifestylePhotos[0].description}</p>
-              </div>
-            </article>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              {lifestylePhotos.slice(1).map((photo) => (
-                <article key={photo.title} className="overflow-hidden rounded-4xl border border-stone-200 bg-stone-50">
-                  <div className="relative aspect-4/3 w-full overflow-hidden">
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+            {lifestylePhotos.map((photo) => (
+              <figure
+                key={photo.title}
+                className="group mx-auto w-full max-w-90 overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-45px_rgba(15,23,42,0.2)]"
+              >
+                <div className="overflow-hidden bg-stone-100 px-3 pt-3">
+                  <div
+                    className="relative mx-auto w-full max-w-62.5 overflow-hidden rounded-2xl"
+                    style={{ aspectRatio: photo.width > photo.height ? "4 / 3" : "3 / 4" }}
+                  >
                     <Image
                       src={photo.src}
                       alt={photo.alt}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      sizes="(max-width: 1024px) 100vw, 45vw"
                     />
                   </div>
-                  <div className="space-y-2 p-4">
-                    <h3 className="text-base font-semibold text-slate-900">{photo.title}</h3>
-                    <p className="text-sm leading-7 text-slate-600">{photo.description}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+                </div>
+                <figcaption className="space-y-2 border-t border-stone-200 px-4 py-3">
+                  <h3 className="text-base font-semibold text-slate-900">{photo.title}</h3>
+                  <p className="text-sm leading-7 text-slate-600">{photo.description}</p>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
