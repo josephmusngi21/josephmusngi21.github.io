@@ -82,7 +82,7 @@ export default function AboutPage() {
               About Me
             </p>
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              The person behind the projects.
+              About me and my work.
             </h1>
             <p className="max-w-3xl text-base leading-8 text-slate-600">
               Hi, I’m Joseph Musngi — a Software Engineering graduate from the University of Arizona with a strong passion for front-end development and a growing interest in back-end engineering. I love building clean, interactive, and user-focused applications, and I’m always looking for ways to improve my skills and expand my knowledge across the full stack.
