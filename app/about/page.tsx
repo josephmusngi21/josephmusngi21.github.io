@@ -1,26 +1,29 @@
+import Image from "next/image";
 import Link from "next/link";
 import ProfileImage from "../components/ProfileImage";
 import meImage from "./me (1).jpg";
 
-const skills = [
-  "Python",
-  "JavaScript",
-  "HTML",
-  "CSS",
-  "C#",
-  "Java",
-  "SQL",
-  "C",
-  "C++",
-  "React",
-  "Next.js",
-  "Tailwind CSS",
-  "Responsive Design",
-  "Node.js",
-  "Express",
-  "REST APIs",
-  "Git",
-  "Debugging",
+const skillGroups = [
+  {
+    title: "Frontend Development",
+    description: "I enjoy building interfaces that feel clean, responsive, and easy to use, with attention to layout, interaction, and polish.",
+    skills: ["React", "Next.js", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Responsive Design"],
+  },
+  {
+    title: "Backend and Data",
+    description: "I am continuing to grow the server-side part of my skill set so I can build complete products instead of only the UI layer.",
+    skills: ["Node.js", "Express", "REST APIs", "SQL", "MongoDB", "AWS"],
+  },
+  {
+    title: "Programming Foundations",
+    description: "My coursework and project work gave me a solid base in problem solving, data structures, and writing code across different languages and environments.",
+    skills: ["Python", "C#", "Java", "C", "C++", "Data Structures", "Algorithms"],
+  },
+  {
+    title: "Workflow and Engineering",
+    description: "I value maintainable project structure, debugging discipline, and practical iteration when turning ideas into working software.",
+    skills: ["Git", "Debugging", "Testing", "Component Architecture", "Project Iteration"],
+  },
 ];
 
 const interests = [
@@ -40,6 +43,33 @@ const contactLinks = [
   { label: "GitHub", href: "https://github.com/josephmusngi21" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/joseph-musngi" },
   { label: "Email", href: "mailto:josephmusngi7@gmail.com" },
+];
+
+const lifestylePhotos = [
+  {
+    src: "/about/img-1870.jpg",
+    alt: "Joseph Musngi hiking outdoors",
+    title: "Hiking trips",
+    description: "I like getting outdoors, exploring new places, and spending time with friends on the trail.",
+  },
+  {
+    src: "/about/img-3337.jpeg",
+    alt: "Joseph Musngi hiking with friends in a red rock landscape",
+    title: "More hiking",
+    description: "A lot of my favorite time away from the computer is spent hiking, traveling, and finding places with great views.",
+  },
+  {
+    src: "/about/fullsizerender.jpeg",
+    alt: "Joseph Musngi playing tennis",
+    title: "Tennis",
+    description: "Tennis keeps me competitive, active, and focused on steady improvement.",
+  },
+  {
+    src: "/about/img-2263.jpeg",
+    alt: "Joseph Musngi at a football game",
+    title: "Game days",
+    description: "I enjoy being around sports, team energy, and the atmosphere of big events.",
+  },
 ];
 
 export default function AboutPage() {
@@ -76,19 +106,69 @@ export default function AboutPage() {
               </a>
             </div>
           </div>
+
+          <section className="w-full rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
+                  Outside of Coding
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
+                  A few snapshots from life outside the screen
+                </h2>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {lifestylePhotos.map((photo) => (
+                <article key={photo.title} className="overflow-hidden rounded-3xl border border-stone-200 bg-stone-50">
+                  <div className="relative aspect-4/5 w-full overflow-hidden">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="space-y-2 p-4">
+                    <h3 className="text-base font-semibold text-slate-900">{photo.title}</h3>
+                    <p className="text-sm leading-7 text-slate-600">{photo.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
         </div>
 
         <div className="grid gap-6">
           <section className="rounded-3xl border border-stone-200 bg-white/90 p-7 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
-            <h2 className="text-xl font-semibold text-slate-900">Skills</h2>
-            <div className="mt-5 flex flex-wrap gap-3">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="rounded-full border border-stone-200 bg-stone-100 px-4 py-2 text-sm text-slate-700"
+            <div className="max-w-2xl">
+              <h2 className="text-xl font-semibold text-slate-900">Skills</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                My strengths are strongest where product thinking, interface design, and practical engineering overlap. I like shipping work that looks polished, feels intuitive, and is supported by solid technical decisions underneath.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 xl:grid-cols-2">
+              {skillGroups.map((group) => (
+                <article
+                  key={group.title}
+                  className="rounded-3xl border border-stone-200 bg-stone-50 p-5"
                 >
-                  {skill}
-                </span>
+                  <h3 className="text-base font-semibold text-slate-900">{group.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{group.description}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-full border border-stone-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </article>
               ))}
             </div>
           </section>
@@ -99,7 +179,7 @@ export default function AboutPage() {
               {interests.map((interest) => (
                 <span
                   key={interest}
-                  className="rounded-full bg-gradient-to-r from-amber-100 to-rose-100 px-4 py-2 text-sm text-slate-700"
+                  className="rounded-full bg-linear-to-r from-amber-100 to-rose-100 px-4 py-2 text-sm text-slate-700"
                 >
                   {interest}
                 </span>
@@ -127,7 +207,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <section className="rounded-3xl border border-stone-200 bg-gradient-to-br from-sky-50 via-white to-amber-50 p-7 text-slate-900 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+          <section className="rounded-3xl border border-stone-200 bg-linear-to-br from-sky-50 via-white to-amber-50 p-7 text-slate-900 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
             <h2 className="text-xl font-semibold">Fun Fact</h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               I like staying active outside of coding, whether that means climbing, hiking, or playing a quick match of tennis.

@@ -16,7 +16,7 @@ export default function Home() {
               Hi, I’m Joseph Musngi.
             </h1>
             <p className="mx-auto max-w-3xl text-lg leading-8 text-slate-600">
-              I’m a Software Engineering graduate who enjoys building clean, modern apps that feel intuitive to use and solid under the hood. I like front-end development because it blends problem solving with design, and I keep growing my back-end skills so I can build complete products from end to end.
+              I enjoy building clean, modern apps that feel intuitive to use and solid under the hood. I like front-end development because it blends problem solving with design, and I keep growing my back-end skills so I can build complete products from end to end.
             </p>
             <p className="mx-auto max-w-3xl text-base leading-8 text-slate-600">
               Outside of coding, I spend time hiking, climbing, playing tennis and bowling, and getting behind the camera for photography. Those hobbies keep me creative, active, and curious, which carries back into how I approach software and new projects.
