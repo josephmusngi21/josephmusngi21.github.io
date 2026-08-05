@@ -15,8 +15,11 @@ export default function Home() {
             <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Hi, I’m Joseph Musngi.
             </h1>
-            <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-600">
-              Software Engineering graduate. I build clean digital experiences, code modern apps, and explore photography when I want to think visually.
+            <p className="mx-auto max-w-3xl text-lg leading-8 text-slate-600">
+              I’m a Software Engineering graduate who enjoys building clean, modern apps that feel intuitive to use and solid under the hood. I like front-end development because it blends problem solving with design, and I keep growing my back-end skills so I can build complete products from end to end.
+            </p>
+            <p className="mx-auto max-w-3xl text-base leading-8 text-slate-600">
+              Outside of coding, I spend time hiking, climbing, playing tennis and bowling, and getting behind the camera for photography. Those hobbies keep me creative, active, and curious, which carries back into how I approach software and new projects.
             </p>
           </div>
 
@@ -37,6 +40,15 @@ export default function Home() {
             <Link href="/photography" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
               Photography
             </Link>
+          </div>
+
+          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
+            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Front-end development</span>
+            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Hiking</span>
+            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Climbing</span>
+            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Tennis</span>
+            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Bowling</span>
+            <span className="rounded-full border border-stone-200 bg-white/90 px-4 py-2">Photography</span>
           </div>
 
           <div className="mx-auto grid max-w-5xl gap-4 text-left sm:grid-cols-2 lg:grid-cols-4">
