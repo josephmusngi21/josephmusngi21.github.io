@@ -78,13 +78,13 @@ export default async function CodingPortfolioPage() {
       <section className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
         <div className="max-w-3xl space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500">
-            Coding Portfolio
+            Projects
           </p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-            Selected apps, prototypes, and embedded projects.
+            Selected apps, prototypes, and project work.
           </h1>
           <p className="text-lg leading-8 text-slate-600">
-            These are the projects you shared, grouped into a clean coding section with dedicated detail pages so each one can stand on its own.
+            This is the main projects section for the site, combining project write-ups with live GitHub profile context in one place.
           </p>
         </div>
 

@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!project) {
     return {
-      title: "Coding Project",
+      title: "Project",
     };
   }
 
   return {
-    title: `${project.title} | Coding`,
+    title: `${project.title} | Projects`,
     description: project.description,
   };
 }
@@ -46,7 +46,7 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
       <section className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
         <div className="flex flex-wrap items-center gap-3 text-sm text-stone-500">
           <Link href="/coding" className="font-medium text-slate-700 hover:text-slate-900">
-            Coding Portfolio
+            Projects
           </Link>
           <span>/</span>
           <span>{project.title}</span>
@@ -122,7 +122,7 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
             </p>
           </div>
 
-          <div className="rounded-3xl border border-stone-200 bg-gradient-to-br from-sky-50 via-white to-amber-50 p-6 text-slate-900 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+          <div className="rounded-3xl border border-stone-200 bg-linear-to-br from-sky-50 via-white to-amber-50 p-6 text-slate-900 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
             <h2 className="text-2xl font-semibold tracking-tight">What I learned</h2>
             <p className="mt-4 text-sm leading-8 text-slate-600">
               {project.learned}

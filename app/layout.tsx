@@ -51,11 +51,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Link href="/about" className="transition-colors hover:text-slate-900">
                 About
               </Link>
-              <Link href="/projects" className="transition-colors hover:text-slate-900">
-                Projects
-              </Link>
               <Link href="/coding" className="transition-colors hover:text-slate-900">
-                Coding
+                Projects
               </Link>
               <Link href="/photography" className="transition-colors hover:text-slate-900">
                 Photography
@@ -78,11 +75,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <Link href="/about" className="transition-colors hover:text-white">
                   About
                 </Link>
-                <Link href="/projects" className="transition-colors hover:text-white">
-                  Projects
-                </Link>
                 <Link href="/coding" className="transition-colors hover:text-white">
-                  Coding
+                  Projects
                 </Link>
                 <Link href="/photography" className="transition-colors hover:text-white">
                   Photography
