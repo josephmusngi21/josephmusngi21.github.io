@@ -37,6 +37,12 @@ export default function ExpandableProject({
 
   const panelId = `${id}-panel`;
 
+  useEffect(() => {
+    const onToggleAll = (event: Event) => setOpen((event as CustomEvent<boolean>).detail);
+    window.addEventListener("technical:toggle-all", onToggleAll);
+    return () => window.removeEventListener("technical:toggle-all", onToggleAll);
+  }, []);
+
   return (
     <article
       id={id}
