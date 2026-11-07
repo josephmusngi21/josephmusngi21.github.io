@@ -1,5 +1,7 @@
 import Link from "next/link";
 import CodeBlock from "@/app/components/CodeBlock";
+import ArchitectureDiagram from "@/app/components/ArchitectureDiagram";
+import { DeepDive, EngineeringLog } from "@/app/components/DeepDive";
 import codingProjects from "@/app/data/coding-projects.json";
 
 export const metadata = {
@@ -68,6 +70,16 @@ export default function TechnicalBreakdownPage() {
 
               <div className="mt-6">
                 <CodeBlock title={project.codeTitle} language={project.codeLanguage} code={project.codeExample} />
+              </div>
+
+              <div className="mt-6 grid gap-6">
+                {project.architecture ? (
+                  <ArchitectureDiagram title="Architecture" architecture={project.architecture} />
+                ) : null}
+                {project.deepDive?.length ? <DeepDive sections={project.deepDive} /> : null}
+                {project.engineeringLog?.length ? (
+                  <EngineeringLog entries={project.engineeringLog} repoUrl={project.repoUrl} />
+                ) : null}
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3">
