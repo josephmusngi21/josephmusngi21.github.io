@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import CodeBlock from "@/app/components/CodeBlock";
 import Demo from "@/app/components/Demo";
 import Diagram from "@/app/components/Diagram";
+import ArchitectureDiagram from "@/app/components/ArchitectureDiagram";
+import { DeepDive, EngineeringLog } from "@/app/components/DeepDive";
 import codingProjects from "@/app/data/coding-projects.json";
 
 type CodingProject = (typeof codingProjects)[number];
@@ -110,6 +112,13 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
           <Demo title={project.demoTitle} description={project.demoDescription} bullets={project.demoBullets} />
           <CodeBlock title={project.codeTitle} language={project.codeLanguage} code={project.codeExample} />
           <Diagram title={project.diagramTitle} steps={project.diagramSteps} />
+          {project.architecture ? (
+            <ArchitectureDiagram title="Architecture" architecture={project.architecture} />
+          ) : null}
+          {project.deepDive?.length ? <DeepDive sections={project.deepDive} /> : null}
+          {project.engineeringLog?.length ? (
+            <EngineeringLog entries={project.engineeringLog} repoUrl={project.repoUrl} />
+          ) : null}
         </div>
 
         <section className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
