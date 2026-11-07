@@ -3,6 +3,12 @@ import Link from "next/link";
 import ProfileImage from "../components/ProfileImage";
 import meImage from "./me (1).jpg";
 
+export const metadata = {
+  title: "About",
+  description:
+    "About Joseph Musngi: software developer, hiker, climber, tennis player, and film photographer based in Arizona.",
+};
+
 const skillGroups = [
   {
     title: "Frontend Development",
