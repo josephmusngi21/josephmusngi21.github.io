@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProjectCard from "@/app/components/ProjectCard";
+import TechShowcaseCard from "@/app/components/TechShowcaseCard";
 import CodingGitHubSection from "@/app/components/CodingGitHubSection";
 import codingProjects from "@/app/data/coding-projects.json";
 
@@ -36,6 +37,8 @@ export default function CodingPortfolioPage() {
           githubProfileUrl={githubProfileUrl}
           projects={codingProjects}
         />
+
+        <TechShowcaseCard projects={codingProjects} />
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {codingProjects.map((project) => (
