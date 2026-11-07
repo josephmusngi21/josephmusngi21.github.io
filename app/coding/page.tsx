@@ -3,9 +3,21 @@ import ProjectCard from "@/app/components/ProjectCard";
 import TechShowcaseCard from "@/app/components/TechShowcaseCard";
 import CodingGitHubSection from "@/app/components/CodingGitHubSection";
 import codingProjects from "@/app/data/coding-projects.json";
+import { featuredSlugs } from "@/app/data/featured";
+
+export const metadata = {
+  title: "Coding",
+  description:
+    "Software projects by Joseph Musngi with architecture diagrams, algorithms, and engineering logs built from real commit history.",
+};
 
 const githubUsername = "josephmusngi21";
 const githubProfileUrl = `https://github.com/${githubUsername}`;
+const featuredProjects = featuredSlugs
+  .map((slug) => codingProjects.find((project) => project.slug === slug))
+  .filter((project) => project !== undefined);
+const otherProjects = codingProjects.filter((project) => !featuredSlugs.includes(project.slug));
+
 export default function CodingPortfolioPage() {
 
   return (
@@ -40,8 +52,16 @@ export default function CodingPortfolioPage() {
 
         <TechShowcaseCard projects={codingProjects} />
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {codingProjects.map((project) => (
+        <h2 className="mt-12 text-2xl font-semibold tracking-tight text-slate-900">Featured projects</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} hrefBase="/coding" />
+          ))}
+        </div>
+
+        <h2 className="mt-14 text-2xl font-semibold tracking-tight text-slate-900">More projects</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {otherProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} hrefBase="/coding" />
           ))}
         </div>
