@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CodeBlock from "@/app/components/CodeBlock";
+import ExpandableProject from "@/app/components/ExpandableProject";
 import ArchitectureDiagram from "@/app/components/ArchitectureDiagram";
 import { DeepDive, EngineeringLog } from "@/app/components/DeepDive";
 import codingProjects from "@/app/data/coding-projects.json";
@@ -44,18 +45,16 @@ export default function TechnicalBreakdownPage() {
 
         <div className="mt-12 grid gap-10">
           {codingProjects.map((project) => (
-            <article
+            <ExpandableProject
               key={project.slug}
               id={project.slug}
-              className="scroll-mt-24 rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.18)] sm:p-8"
+              title={project.title}
+              category={project.category}
+              summary={project.description}
+              techStack={project.techStack}
+              highlightCount={project.highlights.length}
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
-                {project.category}
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
-                {project.title}
-              </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{project.overview}</p>
+              <p className="text-sm leading-7 text-slate-600">{project.overview}</p>
 
               <ul className="mt-5 grid gap-2">
                 {project.highlights.map((highlight) => (
@@ -98,7 +97,7 @@ export default function TechnicalBreakdownPage() {
                   GitHub repo
                 </Link>
               </div>
-            </article>
+            </ExpandableProject>
           ))}
         </div>
       </section>
