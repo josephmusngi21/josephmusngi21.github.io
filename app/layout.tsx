@@ -14,20 +14,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteDescription =
+  "Joseph Musngi is a software developer building React Native, Next.js, and Node apps. Browse architecture breakdowns, algorithms, and engineering logs for each project.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://josephmusngi21.github.io"),
-  title: "Joseph Musngi | Developer Portfolio",
-  description: "Joseph Musngi's portfolio with projects, skills, and about information.",
+  title: {
+    default: "Joseph Musngi | Software Developer Portfolio",
+    template: "%s | Joseph Musngi",
+  },
+  description: siteDescription,
   openGraph: {
-    title: "Joseph Musngi | Developer Portfolio",
-    description: "Joseph Musngi's portfolio with projects, skills, and about information.",
-    images: ["/boy.jpg"],
+    title: "Joseph Musngi | Software Developer Portfolio",
+    description: siteDescription,
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joseph Musngi | Developer Portfolio",
-    description: "Joseph Musngi's portfolio with projects, skills, and about information.",
-    images: ["/boy.jpg"],
+    title: "Joseph Musngi | Software Developer Portfolio",
+    description: siteDescription,
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -89,7 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                   GitHub
                 </a>
                 <a
-                  href="https://www.linkedin.com"
+                  href="https://www.linkedin.com/in/joseph-musngi"
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-white"

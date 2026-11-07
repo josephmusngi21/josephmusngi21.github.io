@@ -4,6 +4,11 @@ import path from "path";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Photography",
+  description: "Arizona film photography shot on a Canon AE-1 Program by Joseph Musngi.",
+};
+
 const photographyDirectory = path.join(process.cwd(), "public/photography");
 const aspectClasses = ["aspect-4/5", "aspect-square", "aspect-3/4", "aspect-5/4"];
 
@@ -24,7 +29,7 @@ function buildGalleryItems() {
     })
     .map((item, index) => ({
       fileName: item.fileName,
-      caption: item.fileName,
+      caption: `Arizona film photograph, Canon AE-1 Program, frame ${item.fileName.match(/\d+/)?.[0] ?? index + 1}`,
       aspectClass: aspectClasses[index % aspectClasses.length],
     }));
 }
