@@ -88,9 +88,6 @@ export default function PhotographyPortfolioPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Featured frames</p>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">Selected work</h2>
             </div>
-            <p className="hidden max-w-md text-sm leading-6 text-slate-600 sm:block">
-              The gallery uses a gentle editorial rhythm so the photos can breathe on desktop and mobile.
-            </p>
           </div>
 
           {featuredItems.length > 0 ? (
