@@ -18,7 +18,7 @@ export function DeepDive({ sections }: { sections: DeepDiveSection[] }) {
         {sections.map((section, index) => (
           <section key={section.title} className="rounded-2xl border border-stone-200 bg-stone-50 p-5">
             <h3 className="flex items-baseline gap-3 text-base font-semibold text-slate-900">
-              <span className="text-xs font-semibold tracking-[0.2em] text-stone-400">
+              <span className="text-xs font-semibold tracking-[0.2em] text-stone-600">
                 {String(index + 1).padStart(2, "0")}
               </span>
               {section.title}

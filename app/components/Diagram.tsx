@@ -12,9 +12,9 @@ export default function Diagram({ title, steps }: DiagramProps) {
       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
         System Design
       </p>
-      <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
+      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
         {title}
-      </h3>
+      </h2>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
         {steps.map((step, index) => (
@@ -26,7 +26,7 @@ export default function Diagram({ title, steps }: DiagramProps) {
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
                 {index + 1}
               </span>
-              <h4 className="text-base font-semibold text-slate-900">{step.title}</h4>
+              <h3 className="text-base font-semibold text-slate-900">{step.title}</h3>
             </div>
             <p className="mt-4 text-sm leading-7 text-slate-600">{step.detail}</p>
           </div>

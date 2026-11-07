@@ -26,9 +26,14 @@ const skillGroups = [
     skills: ["Python", "C#", "Java", "C", "C++", "Data Structures", "Algorithms"],
   },
   {
+    title: "Mobile and Embedded",
+    description: "Cross-platform mobile apps and a hardware project, covered in depth on the technical pages.",
+    skills: ["React Native", "Expo", "Firebase Auth", "ESP32", "Arduino", "TypeScript"],
+  },
+  {
     title: "Workflow and Engineering",
     description: "I value maintainable project structure, debugging discipline, and practical iteration when turning ideas into working software.",
-    skills: ["Git", "Debugging", "Testing", "Component Architecture", "Project Iteration"],
+    skills: ["Git", "Debugging", "Component Architecture", "Architecture Diagrams", "Project Iteration"],
   },
 ];
 
@@ -99,7 +104,7 @@ export default function AboutPage() {
               About me and my work.
             </h1>
             <p className="max-w-3xl text-base leading-8 text-slate-600">
-              Hi, I’m Joseph Musngi — a Software Engineering graduate from the University of Arizona with a strong passion for front-end development and a growing interest in back-end engineering. I love building clean, interactive, and user-focused applications, and I’m always looking for ways to improve my skills and expand my knowledge across the full stack.
+              Hi, I’m Joseph Musngi — a Software Engineering graduate from the University of Arizona who builds across the stack: front-end interfaces, back-end APIs, React Native mobile apps, and embedded projects like an ESP32 game console. I like owning a feature from the database to the screen, and I’m looking for software engineering roles in full-stack, front-end, back-end, or mobile development.
             </p>
             <p className="max-w-3xl text-base leading-8 text-slate-600">
               I’ve completed coursework in Data Structures, Algorithms, and Full Stack Development, and I’ve built projects that reflect my interest in both design and engineering. I have solid experience with Python, JavaScript, HTML, CSS, and C#, along with foundational knowledge in Java, SQL, C, and C++. I’m comfortable working with core data structures such as Linked Lists, Trees, Arrays, Stacks, Queues, Hash Tables, and Sets, and I enjoy applying these concepts to real projects.
@@ -111,7 +116,7 @@ export default function AboutPage() {
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Focus</p>
-                <p className="mt-3 text-sm leading-7 text-slate-700">Frontend development, full-stack growth, and polished user experiences.</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700">Full-stack web and mobile apps, with a backend and data layer behind every UI.</p>
               </div>
               <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Based In</p>
@@ -119,7 +124,7 @@ export default function AboutPage() {
               </div>
               <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Looking Ahead</p>
-                <p className="mt-3 text-sm leading-7 text-slate-700">I want to keep growing into strong full-stack engineering roles and build products people enjoy using.</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700">Software engineering roles across full-stack, front-end, back-end, and mobile development.</p>
               </div>
             </div>
 

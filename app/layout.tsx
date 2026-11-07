@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteNavLink from "./components/SiteNavLink";
+import { resumeHref } from "./data/resume";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -102,9 +103,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 >
                   LinkedIn
                 </a>
-                <a href="mailto:josephmusngi21@gmail.com" className="transition-colors hover:text-white">
+                <a href="mailto:josephmusngi7@gmail.com" className="transition-colors hover:text-white">
                   Email
                 </a>
+                {resumeHref ? (
+                  <a href={resumeHref} target="_blank" rel="noreferrer" className="transition-colors hover:text-white">
+                    Resume
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>

@@ -22,10 +22,17 @@ export default function ExpandableProject({
   children,
 }: ExpandableProjectProps) {
   const [open, setOpen] = useState(false);
+  const [everOpened, setEverOpened] = useState(false);
+
+  const setPanelOpen = (value: boolean) => {
+    if (value) setEverOpened(true);
+    setOpen(value);
+  };
 
   useEffect(() => {
     const openIfTargeted = () => {
       if (window.location.hash === `#${id}`) {
+        setEverOpened(true);
         setOpen(true);
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
@@ -38,7 +45,11 @@ export default function ExpandableProject({
   const panelId = `${id}-panel`;
 
   useEffect(() => {
-    const onToggleAll = (event: Event) => setOpen((event as CustomEvent<boolean>).detail);
+    const onToggleAll = (event: Event) => {
+      const value = (event as CustomEvent<boolean>).detail;
+      if (value) setEverOpened(true);
+      setOpen(value);
+    };
     window.addEventListener("technical:toggle-all", onToggleAll);
     return () => window.removeEventListener("technical:toggle-all", onToggleAll);
   }, []);
@@ -50,7 +61,7 @@ export default function ExpandableProject({
     >
       <button
         type="button"
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => setPanelOpen(!open)}
         aria-expanded={open}
         aria-controls={panelId}
         className="flex w-full items-start justify-between gap-4 rounded-3xl p-6 text-left sm:p-8"
@@ -84,7 +95,7 @@ export default function ExpandableProject({
         inert={!open}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-stone-200 p-6 sm:p-8">{children}</div>
+          <div className="border-t border-stone-200 p-6 sm:p-8">{open || everOpened ? children : null}</div>
         </div>
       </div>
     </article>

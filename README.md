@@ -1,37 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Joseph Musngi — Portfolio
 
-## Getting Started
+Live site: https://josephmusngi21.github.io
 
-First, run the development server:
+A static portfolio built with Next.js (App Router, `output: "export"`), TypeScript, and Tailwind CSS.
+
+## What's on the site
+
+- **Coding**: 17 projects with overviews, highlights, and code samples.
+- **Technical breakdown** (`/coding/technical`): expandable per-project write-ups with SVG architecture diagrams, deep dives into the algorithms, and an engineering log reconstructed from commit history.
+- **About** and **Photography**: background, skills, and an Arizona film gallery.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run lint
+npm run build    # static export to ./out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `app/data/coding-projects.json`: single source of truth for every project (overview, deep dive, architecture nodes/edges, engineering log).
+- `app/data/featured.ts`: slugs shown as featured on the home and coding pages.
+- `app/components/ArchitectureDiagram.tsx`: renders the layered SVG diagram from the project's nodes and edges.
+- `public/resume.pdf`: optional; when present, a Resume link appears on the home page and footer.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# josephmusngi21-josephmusngi21.github.io
+Photos in `public/` are pre-resized (max 1800px, JPEG) because the static export uses unoptimized images.

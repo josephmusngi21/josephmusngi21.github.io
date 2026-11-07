@@ -212,10 +212,11 @@ export default function ArchitectureDiagram({ title, architecture }: { title: st
           })}
 
           {edges.map((edge) => {
-            const text = edge.label.length > 26 ? `${edge.label.slice(0, 25)}...` : edge.label;
+            const text = edge.label.length > 34 ? `${edge.label.slice(0, 33)}...` : edge.label;
             const w = text.length * 5.6 + 10;
             return (
               <g key={`${edge.key}-label`}>
+                <title>{edge.label}</title>
                 <rect x={edge.lx - w / 2} y={edge.ly - 9} width={w} height="17" rx="8" fill="#ffffff" stroke="#e7e5e4" />
                 <text x={edge.lx} y={edge.ly + 3} textAnchor="middle" fontSize="10" fill="#475569">
                   {text}

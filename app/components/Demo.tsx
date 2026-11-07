@@ -17,9 +17,9 @@ export default function Demo({ title, description, bullets }: DemoProps) {
         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-stone-500">
           Project Walkthrough
         </p>
-        <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
+        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
           {title}
-        </h3>
+        </h2>
         <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">
           {description}
         </p>

@@ -3,6 +3,7 @@ import ProfileImage from "@/app/components/ProfileImage";
 import ProjectCard from "@/app/components/ProjectCard";
 import codingProjects from "@/app/data/coding-projects.json";
 import { featuredSlugs } from "@/app/data/featured";
+import { resumeHref } from "@/app/data/resume";
 import meImage from "@/app/about/me (1).jpg";
 
 export default function Home() {
@@ -53,9 +54,14 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="mailto:josephmusngi21@gmail.com" className="rounded-full bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-slate-800">
+            <a href="mailto:josephmusngi7@gmail.com" className="rounded-full bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-slate-800">
               Get in touch
             </a>
+            {resumeHref ? (
+              <a href={resumeHref} target="_blank" rel="noreferrer" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
+                Resume
+              </a>
+            ) : null}
             <Link href="/coding/technical" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-stone-300 hover:bg-white">
               Technical breakdowns
             </Link>

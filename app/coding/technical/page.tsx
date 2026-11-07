@@ -5,6 +5,12 @@ import ExpandAllControls from "@/app/components/ExpandAllControls";
 import ArchitectureDiagram from "@/app/components/ArchitectureDiagram";
 import { DeepDive, EngineeringLog } from "@/app/components/DeepDive";
 import codingProjects from "@/app/data/coding-projects.json";
+import { featuredSlugs } from "@/app/data/featured";
+
+const orderedProjects = [
+  ...featuredSlugs.map((slug) => codingProjects.find((project) => project.slug === slug)),
+  ...codingProjects.filter((project) => !featuredSlugs.includes(project.slug)),
+].filter((project) => project !== undefined);
 
 export const metadata = {
   title: "Technical breakdown",
@@ -34,7 +40,7 @@ export default function TechnicalBreakdownPage() {
 
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
           <nav aria-label="Projects" className="flex flex-wrap gap-2">
-            {codingProjects.map((project) => (
+            {orderedProjects.map((project) => (
               <a
                 key={project.slug}
                 href={`#${project.slug}`}
@@ -48,7 +54,7 @@ export default function TechnicalBreakdownPage() {
         </div>
 
         <div className="mt-12 grid gap-10">
-          {codingProjects.map((project) => (
+          {orderedProjects.map((project) => (
             <ExpandableProject
               key={project.slug}
               id={project.slug}
