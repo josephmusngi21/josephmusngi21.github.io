@@ -5,21 +5,45 @@
     "category": "React Native Mobile App",
     "description": "Canyon Run is an Expo React Native app for GPS route capture, map visualization, and elevation-aware run review.",
     "overview": "A mobile canyon tracking companion that records location points by time or distance interval, stores runs in JSON, and lets users inspect route and elevation behavior after each session.",
-    "techStack": ["React Native", "Expo", "expo-location", "expo-file-system", "react-native-svg", "JavaScript"],
+    "techStack": [
+      "React Native",
+      "Expo",
+      "expo-location",
+      "expo-file-system",
+      "react-native-svg",
+      "JavaScript"
+    ],
     "repoUrl": "https://github.com/josephmusngi21/Canyon-Run",
     "demoUrl": "",
-    "highlights": ["GPS interval-based point capture", "Route + elevation visualization", "Portable JSON import/export"],
+    "highlights": [
+      "GPS interval-based point capture",
+      "Route + elevation visualization",
+      "Portable JSON import/export"
+    ],
     "demoTitle": "Route tracking flow and map inspection",
     "demoDescription": "Canyon Run focuses on practical run telemetry: capture points in real time, persist sessions safely, and explore map/elevation details after recording.",
-    "demoBullets": ["Location permission + watch subscription", "Point simplification for map performance", "Saved run browsing with per-route details"],
+    "demoBullets": [
+      "Location permission + watch subscription",
+      "Point simplification for map performance",
+      "Saved run browsing with per-route details"
+    ],
     "codeTitle": "Tracking interval decision logic",
     "codeLanguage": "tsx",
     "codeExample": "const shouldRecord = timeUnit === 'm' || timeUnit === 's'\n  ? (currentTime - lastRecordTime) >= intervalInMs\n  : calculateDistance(lastLat, lastLng, latitude, longitude) >= trackingInterval;\n\nif (shouldRecord) {\n  setRouteJson((prev) => [...prev, { longitude, latitude, altitude, timestamp: currentTime }]);\n}",
     "diagramTitle": "How a run session flows",
     "diagramSteps": [
-      {"title": "Capture", "detail": "Location updates are sampled and converted into route points with timestamps and altitude."},
-      {"title": "Persist", "detail": "Runs are normalized and written to JSON so sessions are portable and recoverable."},
-      {"title": "Inspect", "detail": "Saved sessions can be reviewed on map and elevation views for route analysis."}
+      {
+        "title": "Capture",
+        "detail": "Location updates are sampled and converted into route points with timestamps and altitude."
+      },
+      {
+        "title": "Persist",
+        "detail": "Runs are normalized and written to JSON so sessions are portable and recoverable."
+      },
+      {
+        "title": "Inspect",
+        "detail": "Saved sessions can be reviewed on map and elevation views for route analysis."
+      }
     ],
     "systemDesign": "Canyon Run splits capture, storage, and visualization responsibilities into separate modules. That separation makes it easier to evolve map UX without risking GPS capture reliability or data persistence behavior.",
     "learned": "This project reinforced mobile sensor-system design tradeoffs: collect enough points for useful maps, but aggressively guard performance and persistence so sessions are never lost."
@@ -30,21 +54,43 @@
     "category": "React Native Recipe App",
     "description": "Recipe app built with React Native, MongoDB, and AWS.",
     "overview": "A cross-platform recipe experience with cloud-backed data storage and a mobile-first interface for browsing and saving meals.",
-    "techStack": ["React Native", "MongoDB", "AWS", "Mobile UX"],
+    "techStack": [
+      "React Native",
+      "MongoDB",
+      "AWS",
+      "Mobile UX"
+    ],
     "repoUrl": "https://github.com/josephmusngi21/Insert",
     "demoUrl": "",
-    "highlights": ["Cloud database support", "Recipe browsing", "Mobile-first UI"],
+    "highlights": [
+      "Cloud database support",
+      "Recipe browsing",
+      "Mobile-first UI"
+    ],
     "demoTitle": "Recipe workflow built for mobile",
     "demoDescription": "The layout is designed around quick browsing, recipe previews, and straightforward save actions so users can move fast in the kitchen.",
-    "demoBullets": ["Recipe list and detail views", "MongoDB-backed content", "AWS deployment path"],
+    "demoBullets": [
+      "Recipe list and detail views",
+      "MongoDB-backed content",
+      "AWS deployment path"
+    ],
     "codeTitle": "Recipe fetch pattern",
     "codeLanguage": "tsx",
     "codeExample": "async function loadRecipes() {\n  const response = await fetch('/api/recipes');\n  const recipes = await response.json();\n  setRecipes(recipes);\n}",
     "diagramTitle": "Recipe app architecture",
     "diagramSteps": [
-      {"title": "Request", "detail": "The mobile app requests recipe data from the backend."},
-      {"title": "Store", "detail": "MongoDB keeps the recipe content and user data organized."},
-      {"title": "Deliver", "detail": "AWS hosts the app and makes the experience accessible across devices."}
+      {
+        "title": "Request",
+        "detail": "The mobile app requests recipe data from the backend."
+      },
+      {
+        "title": "Store",
+        "detail": "MongoDB keeps the recipe content and user data organized."
+      },
+      {
+        "title": "Deliver",
+        "detail": "AWS hosts the app and makes the experience accessible across devices."
+      }
     ],
     "systemDesign": "The system separates the mobile UI from the persistent data layer, which keeps the app easier to scale and simpler to maintain. MongoDB provides flexible content storage while AWS handles deployment and availability.",
     "learned": "I learned how to combine mobile UX with a cloud-backed architecture so the product can grow beyond a local prototype."
@@ -55,23 +101,810 @@
     "category": "Embedded Systems Project",
     "description": "ESP32-based Tamagotchi clone featuring SSD1306 OLED display, three GPIO buttons, and active buzzer interaction.",
     "overview": "A playful embedded project that combines hardware buttons, display output, and sound feedback to recreate the classic virtual pet experience.",
-    "techStack": ["ESP32", "Arduino", "SSD1306 OLED", "GPIO", "Buzzer"],
+    "techStack": [
+      "ESP32",
+      "Arduino",
+      "SSD1306 OLED",
+      "GPIO",
+      "Buzzer"
+    ],
     "repoUrl": "https://github.com/josephmusngi21/ESP32-Tamagotchi-Clone",
     "demoUrl": "",
-    "highlights": ["OLED display output", "Button input handling", "Active buzzer feedback"],
+    "highlights": [
+      "OLED display output",
+      "Button input handling",
+      "Active buzzer feedback"
+    ],
     "demoTitle": "A tiny pet with real hardware feedback",
     "demoDescription": "The display, buttons, and buzzer work together to give the user visible and audible feedback as the virtual pet changes state.",
-    "demoBullets": ["SSD1306 OLED screen", "Three-button controls", "Active buzzer responses"],
+    "demoBullets": [
+      "SSD1306 OLED screen",
+      "Three-button controls",
+      "Active buzzer responses"
+    ],
     "codeTitle": "Input handling loop",
     "codeLanguage": "cpp",
     "codeExample": "void loop() {\n  readButtons();\n  updatePetState();\n  renderDisplay();\n  playBuzzerFeedback();\n}",
     "diagramTitle": "Embedded interaction flow",
     "diagramSteps": [
-      {"title": "Input", "detail": "GPIO buttons capture the player’s actions."},
-      {"title": "Process", "detail": "The ESP32 updates the pet’s state and logic."},
-      {"title": "Output", "detail": "The OLED and buzzer provide visible and audible feedback."}
+      {
+        "title": "Input",
+        "detail": "GPIO buttons capture the player’s actions."
+      },
+      {
+        "title": "Process",
+        "detail": "The ESP32 updates the pet’s state and logic."
+      },
+      {
+        "title": "Output",
+        "detail": "The OLED and buzzer provide visible and audible feedback."
+      }
     ],
     "systemDesign": "The project uses a simple embedded event loop: capture button input, update the virtual pet state, and reflect that state on the OLED with sound cues. That keeps the logic predictable and easy to debug on hardware.",
     "learned": "I learned how hardware constraints shape software design, especially when you need fast, understandable feedback from a very small interface."
+  },
+  {
+    "slug": "order-inventory",
+    "title": "OrderInventory",
+    "category": "Mobile & Web App",
+    "description": "Company-scoped inventory app that imports Excel workbooks, routes edits through admin approval, and keeps versioned audit history.",
+    "overview": "OrderInventory is one Expo Router codebase targeting Android, iOS and web. Members import messy Excel sheets, which are normalized client-side, then published or submitted for admin approval through Firebase Cloud Functions backed by Firestore with security rules.",
+    "techStack": [
+      "Expo Router",
+      "React Native",
+      "TypeScript",
+      "NativeWind",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "Cloud Functions (2nd Gen)",
+      "SheetJS (xlsx)"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/OrderInventory",
+    "demoUrl": "",
+    "highlights": [
+      "Excel parser maps arbitrary headers to canonical fields using an alias table with exact match first, then substring fuzzy match",
+      "Unmapped columns are preserved as customFields so no spreadsheet data is lost",
+      "Join codes are 12 chars from an unambiguous alphabet via crypto.randomBytes, stored only as SHA-256 hashes, and expire after 60 seconds",
+      "All writes go through callable Cloud Functions with company-admin checks, plus Firestore rules, audit logging and immutable inventory snapshots"
+    ],
+    "demoTitle": "Import, approve, publish",
+    "demoDescription": "The core workflow turns an arbitrary spreadsheet into validated inventory rows and moves them through an approval pipeline.",
+    "demoBullets": [
+      "Upload an .xlsx file and see headers auto-mapped to item code, name, quantity, unit, location and status",
+      "Members submit changes for approval while admins review and approve or reject",
+      "Admins generate short-lived join codes to add teammates to a company",
+      "Browse earlier inventory snapshots and export the current inventory back to Excel"
+    ],
+    "codeTitle": "Fuzzy header matching for Excel import",
+    "codeLanguage": "js",
+    "codeExample": "function getInventoryColumn(header) {\n  const normalizedHeader = normalizeHeader(header).toLowerCase();\n  const exactMatch = Object.entries(HEADER_ALIASES).find(([, aliases]) =>\n    aliases.includes(normalizedHeader),\n  );\n  if (exactMatch) return exactMatch[0];\n\n  return Object.entries(HEADER_ALIASES).find(([, aliases]) =>\n    aliases.some(\n      (alias) =>\n        normalizedHeader.includes(alias) || alias.includes(normalizedHeader),\n    ),\n  )?.[0];\n}",
+    "diagramTitle": "Inventory publish pipeline",
+    "diagramSteps": [
+      {
+        "title": "Parse",
+        "detail": "SheetJS reads the first worksheet, finds the header row, maps columns by alias and coerces quantity to a number."
+      },
+      {
+        "title": "Authenticate",
+        "detail": "The client refreshes its Firebase ID token before every callable Function request."
+      },
+      {
+        "title": "Authorize",
+        "detail": "Cloud Functions verify company membership or admin role, then write inventory, snapshots and audit entries with the Admin SDK."
+      },
+      {
+        "title": "Review",
+        "detail": "Member submissions wait as pending approvals until an admin approves or rejects them."
+      }
+    ],
+    "systemDesign": "A thin Expo client does Excel parsing locally and calls callable Cloud Functions for every protected read and write. Functions use the Admin SDK, check company roles, write audit records and versioned snapshots to Firestore, and a scheduled function deletes expired join-code hashes. Firestore security rules add a second authorization layer.",
+    "learned": "I learned to keep trust on the server: the client only parses and displays, while Cloud Functions and Firestore rules decide what is allowed. Building the header matcher taught me how forgiving spreadsheet import has to be, and that fuzzy matching needs an exact-match pass first to avoid wrong mappings. Hashing short-lived join codes was my first practical use of storing only a digest of a secret."
+  },
+  {
+    "slug": "sproutie",
+    "title": "Sproutie",
+    "category": "Mobile App & REST API",
+    "description": "Plant care app with an Express and MongoDB backend that wraps the Trefle plant API and stores each user's plant collection.",
+    "overview": "Sproutie is a React Native/Expo plant-care app paired with a Node.js/Express server. Users authenticate with Firebase, search plant species through the server, and save plants to a personal collection with growth stages, notes and care reminders. Weather-based watering notifications are described in the README as a goal.",
+    "techStack": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "Firebase Auth",
+      "Trefle API"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/Sproutie",
+    "demoUrl": "",
+    "highlights": [
+      "Duplicate-save guard looks up the compound key (firebaseUid, trefleId) and returns HTTP 409 instead of inserting twice",
+      "Mongoose compound indexes, including a unique (firebaseUid, trefleId) index on favorites, keep per-user lookups fast",
+      "TrefleAPI service class wraps the third-party API, appends the token correctly with ? or &, and URL-encodes search queries",
+      "Schema models care reminders (type, frequency, lastDone, nextDue) and growth stages per plant"
+    ],
+    "demoTitle": "Search and save plants",
+    "demoDescription": "The server exposes REST endpoints that the app uses to find plants and manage a personal collection.",
+    "demoBullets": [
+      "Search species with GET /api/plants/search?q=",
+      "Save a plant to a user's collection with POST /api/plants/save",
+      "List a user's plants newest first and remove entries by id",
+      "Create the Mongo user record right after Firebase registration"
+    ],
+    "codeTitle": "Idempotent plant save endpoint",
+    "codeLanguage": "js",
+    "codeExample": "router.post('/save', async (req, res) => {\n  const { userId, plantData } = req.body;\n  if (!userId || !plantData) {\n    return res.status(400).json({ error: 'userId and plantData required' });\n  }\n  const exists = await UserPlant.findOne({\n    firebaseUid: userId,\n    trefleId: plantData.id\n  });\n  if (exists) {\n    return res.status(409).json({ error: 'Plant already saved', plant: exists });\n  }\n  const plant = await UserPlant.create({\n    firebaseUid: userId,\n    trefleId: plantData.id,\n    commonName: plantData.common_name,\n    scientificName: plantData.scientific_name\n  });\n  res.status(201).json({ message: 'Plant saved', plant });\n});",
+    "diagramTitle": "Plant save flow",
+    "diagramSteps": [
+      {
+        "title": "Authenticate",
+        "detail": "Firebase handles sign-in; the app posts the Firebase UID and email to /api/users to create the Mongo profile."
+      },
+      {
+        "title": "Search",
+        "detail": "The app calls the server, which proxies Trefle with the API token kept in an environment variable."
+      },
+      {
+        "title": "Validate",
+        "detail": "The save route checks required fields and rejects duplicates by (firebaseUid, trefleId)."
+      },
+      {
+        "title": "Persist",
+        "detail": "A UserPlant document is created with Trefle data plus user fields such as notes, photos and care reminders."
+      }
+    ],
+    "systemDesign": "A React Native client talks to an Express REST API split into routes, models and a service layer. Mongoose models hold users, saved plants, favorites and search history with compound indexes on the Firebase UID. The server hides the Trefle API token from the client. Note that the user id is taken from the request body, so server-side token verification is not yet implemented.",
+    "learned": "I learned to separate routes, models and an external-API service class, and to use compound indexes and 409 responses to keep saves idempotent. Reading my own code back, I also see that trusting a userId from the request body is a gap; the next step is verifying Firebase ID tokens on the server."
+  },
+  {
+    "slug": "spotify-friend",
+    "title": "Spotify Friend",
+    "category": "Mobile App (Prototype)",
+    "description": "React Native prototype exploring Spotify's PKCE authorization flow, with a planned song play-count tracker.",
+    "overview": "The repo contains an Expo React Native App.js with TODOs for tallying song plays in a dictionary, and an assets/script.js that implements pieces of the Spotify Authorization Code with PKCE flow: verifier generation, SHA-256 challenge, token exchange and profile fetch. It is unfinished and not wired together.",
+    "techStack": [
+      "React Native",
+      "Expo",
+      "JavaScript",
+      "Spotify Web API",
+      "OAuth 2.0 PKCE"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/spotifyFriend",
+    "demoUrl": "",
+    "highlights": [
+      "PKCE code verifier built from 128 random characters",
+      "S256 code challenge using SHA-256 and base64url encoding (replace + and /, strip =)",
+      "Token exchange posts authorization code plus verifier to the Spotify token endpoint",
+      "Planned song-count dictionary; the auth flow is incomplete and the app does not run end to end"
+    ],
+    "demoTitle": "Auth flow prototype",
+    "demoDescription": "A prototype of the Spotify login steps; the UI is not finished.",
+    "demoBullets": [
+      "Generates verifier and challenge for PKCE",
+      "Exchanges code for an access token",
+      "Fetches the profile from /v1/me",
+      "Song play counting is still TODO"
+    ],
+    "codeTitle": "PKCE code challenge",
+    "codeLanguage": "js",
+    "codeExample": "async function generateCodeChallenge(codeVerifier) {\n  const hash = crypto.createHash(\"sha256\");\n  hash.update(codeVerifier);\n  const digest = hash.digest();\n  return digest\n    .toString(\"base64\")\n    .replace(/\\+/g, \"-\")\n    .replace(/\\//g, \"_\")\n    .replace(/=+$/, \"\");\n}",
+    "diagramTitle": "PKCE flow",
+    "diagramSteps": [
+      {
+        "title": "Verifier",
+        "detail": "Generate a random 128 character string and keep it in local storage."
+      },
+      {
+        "title": "Challenge",
+        "detail": "SHA-256 hash the verifier and base64url encode it."
+      },
+      {
+        "title": "Authorize",
+        "detail": "Redirect to Spotify with the S256 challenge (the redirect line is commented out)."
+      },
+      {
+        "title": "Token",
+        "detail": "Exchange the returned code and verifier for an access token, then call /v1/me."
+      }
+    ],
+    "systemDesign": "A React Native App.js shell plus a script module holding the OAuth helper functions. The pieces are not yet connected, and the script mixes Node-style crypto with a mobile client, which I would need to fix.",
+    "learned": "I learned how PKCE protects the authorization code flow without a client secret. The code also shows my limits: it uses Math.random for the verifier and Node modules in a mobile app, so I would switch to a secure random source and an Expo-compatible crypto library next."
+  },
+  {
+    "slug": "dino-game",
+    "title": "Dino Game",
+    "category": "Games",
+    "description": "A Chrome-style endless runner built with vanilla JavaScript and the HTML5 Canvas.",
+    "overview": "A single-page canvas game where a dinosaur jumps over randomly spawned cacti. It uses a requestAnimationFrame loop, simple gravity physics, and AABB collision detection, all in one small script with no libraries.",
+    "techStack": [
+      "JavaScript",
+      "HTML5 Canvas",
+      "CSS"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/Dino-Game",
+    "demoUrl": "",
+    "highlights": [
+      "requestAnimationFrame game loop that clears and redraws the canvas every frame",
+      "Gravity physics: velocityY += gravity each frame, with the dino clamped to the ground using Math.min",
+      "Axis-aligned bounding box (AABB) collision detection between the dino and each cactus",
+      "Weighted random cactus spawning (about 70% small, 20% medium, 10% large) on a 1 second interval, capped at 5 live obstacles"
+    ],
+    "demoTitle": "Play the Dino Game",
+    "demoDescription": "Run the game in a browser and jump over cacti until you collide with one.",
+    "demoBullets": [
+      "Press Space or Arrow Up to jump",
+      "Jumping is only allowed while the dino is on the ground",
+      "Score increases every frame",
+      "On collision the sprite swaps to a dead dino and the loop stops"
+    ],
+    "codeTitle": "Game loop and AABB collision",
+    "codeLanguage": "js",
+    "codeExample": "function update() {\n    if (gameOver) return;\n    requestAnimationFrame(update);\n    context.clearRect(0, 0, board.width, board.height);\n\n    velocityY += gravity;\n    dino.y = Math.min(dino.y + velocityY, 156);\n    context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);\n\n    cactusArray.forEach(cactus => {\n        cactus.x += velocityX;\n        context.drawImage(cactus.img, cactus.x, cactus.y, cactus.width, cactus.height);\n        if (detectCollision(dino, cactus)) endGame();\n    });\n}\n\nfunction detectCollision(a, b) {\n    return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;\n}",
+    "diagramTitle": "Frame flow",
+    "diagramSteps": [
+      {
+        "title": "Input",
+        "detail": "A keydown listener sets velocityY to -10 when the dino is on the ground."
+      },
+      {
+        "title": "Update",
+        "detail": "Gravity is added to velocityY, dino.y is clamped at ground level, and cacti move left by velocityX."
+      },
+      {
+        "title": "Collide",
+        "detail": "Each cactus is checked against the dino with an AABB overlap test."
+      },
+      {
+        "title": "Render",
+        "detail": "The canvas is cleared and sprites plus the score are redrawn, then the next frame is requested."
+      }
+    ],
+    "systemDesign": "Everything lives in one script with module-level state (dino and cactus objects, velocity, gravity, score, gameOver). A requestAnimationFrame loop drives updates and rendering, while a separate setInterval spawns obstacles. Spawned cacti are copied from a template object and stored in a small array that drops the oldest entry past five.",
+    "learned": "I learned how a basic game loop works: update state, test collisions, then redraw. I got comfortable with simple gravity physics and AABB overlap checks. Looking back, the game speed is tied to frame rate and cactus spawning uses a fixed timer, so a fixed timestep and a spawn gap tied to speed would make it more consistent."
+  },
+  {
+    "slug": "react-weather",
+    "title": "React Weather",
+    "category": "Web Apps",
+    "description": "A React weather app that looks up a city and shows current conditions from OpenWeatherMap.",
+    "overview": "Users type a city name and the app fetches current weather from the OpenWeatherMap API in imperial units, then shows an icon matching the condition plus temperature, min/max, humidity and wind. A 404 response shows a city-not-found error.",
+    "techStack": [
+      "React 18",
+      "JavaScript",
+      "CSS Modules",
+      "styled-components",
+      "OpenWeatherMap API"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/react-weather",
+    "demoUrl": "",
+    "highlights": [
+      "useEffect triggered by city state to fetch data from the REST API whenever a new city is submitted",
+      "Async fetch with HTTP 404 handling that clears stale data and sets an error flag",
+      "Lookup-table mapping of the API weather.main value to an icon image",
+      "Component split into Info, Card, Block, Menu and Navigation with CSS Modules styling"
+    ],
+    "demoTitle": "Search a city",
+    "demoDescription": "Enter a city name and submit to see its current weather.",
+    "demoBullets": [
+      "Empty submissions trigger an alert asking for a city",
+      "Condition icon is chosen from the API response",
+      "Shows temperature, min, max, humidity and wind speed",
+      "Unknown cities display an error message"
+    ],
+    "codeTitle": "Fetching weather with error handling",
+    "codeLanguage": "jsx",
+    "codeExample": "useEffect(() => {\n  if (city !== \"\") {\n    fetchWeather();\n  }\n}, [city]);\n\nconst fetchWeather = async () => {\n  const response = await fetch(apiURL + city + `&appid=${api_key}`);\n  if (response.status === 404) {\n    setError(true);\n    setWeatherData(null);\n  } else {\n    const data = await response.json();\n    setWeatherData(data);\n    setError(false);\n  }\n};\n\n// icon chosen by weather condition\nsrc={weatherComponents[weatherData.weather[0].main.toLowerCase()]}",
+    "diagramTitle": "Request flow",
+    "diagramSteps": [
+      {
+        "title": "Submit",
+        "detail": "The form handler reads the input and sets the city state."
+      },
+      {
+        "title": "Fetch",
+        "detail": "A useEffect on city calls the OpenWeatherMap current weather endpoint."
+      },
+      {
+        "title": "Handle",
+        "detail": "A 404 sets the error state; otherwise the JSON is stored in weatherData."
+      },
+      {
+        "title": "Render",
+        "detail": "The matching icon and weather values are rendered from state."
+      }
+    ],
+    "systemDesign": "A Create React App client with no backend. The Info component owns three pieces of state (city, error, weatherData) and calls the public API directly from the browser. Weather icons are imported as a module and mapped by condition name. Styling uses CSS Modules.",
+    "learned": "I learned the useState and useEffect data-fetching pattern and how to handle an error response from an API. Honestly, the API key is hardcoded in the client source, which I would now move to an environment variable or a proxy. The weathers array check also does nothing useful, and a network failure other than 404 is not handled."
+  },
+  {
+    "slug": "geotodo",
+    "title": "geoToDo",
+    "category": "Mobile Apps",
+    "description": "A full-stack task manager with an Expo React Native client and an Express/MongoDB API, aimed at location-aware to-dos.",
+    "overview": "The mobile app shows tasks in Today, Future and Locations tabs and lets tasks move between Open, WIP and Closed. The Node/Express server connects to MongoDB and serves task data over a REST API. The geolocation features are planned in the structure, but I did not find actual distance or geofence code in the files I read.",
+    "techStack": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/geoToDo",
+    "demoUrl": "",
+    "highlights": [
+      "Two-part architecture: Expo Router app in toDo/ and Express API in server/",
+      "Controller-per-resource API layout (runs, tasks, users, locations) using Express routers",
+      "MongoDB access through the official driver with Stable API strict mode and env-based URI",
+      "Tabbed task views (Today, Future, Locations) with status filtering and PATCH-based status updates described in the README"
+    ],
+    "demoTitle": "Run it locally",
+    "demoDescription": "Start the Express server with a MongoDB URI, then launch the Expo app.",
+    "demoBullets": [
+      "Server needs MONGO_URI in a .env file",
+      "GET /api/runs returns documents from MongoDB",
+      "Expo app renders User and ToDo components from the index route",
+      "Client expects the server at localhost:3000"
+    ],
+    "codeTitle": "Express route reading from MongoDB",
+    "codeLanguage": "js",
+    "codeExample": "const client = new MongoClient(uri, {\n  serverApi: {\n    version: ServerApiVersion.v1,\n    strict: true,\n    deprecationErrors: true,\n  },\n});\n\napp.get('/api/runs', async (req, res) => {\n  try {\n    await client.connect();\n    const runs = await client.db(\"todo\").collection(\"todo_list\").find({}).toArray();\n    res.json(runs);\n  } catch (err) {\n    res.status(500).json({ error: err.message });\n  } finally {\n    await client.close();\n  }\n});",
+    "diagramTitle": "Data flow",
+    "diagramSteps": [
+      {
+        "title": "App",
+        "detail": "Expo Router renders the User and ToDo components."
+      },
+      {
+        "title": "Request",
+        "detail": "The client uses fetch against the Express API."
+      },
+      {
+        "title": "API",
+        "detail": "Express routes call the MongoDB driver and return JSON."
+      },
+      {
+        "title": "Store",
+        "detail": "Task documents live in a MongoDB collection."
+      }
+    ],
+    "systemDesign": "A separate client and server. The client uses file-based routing (Expo Router) with tab components per view. The server loads the MongoDB URI from the environment, enables CORS and JSON parsing, and organizes endpoints into controller files per resource. Currently only the runs route is clearly wired up in server.js.",
+    "learned": "I learned how to connect an Expo client to an Express and MongoDB backend and keep secrets in environment variables. Honestly, the server opens and closes a MongoDB connection on every request, which is wasteful; a shared connection would be better. The location features are not implemented in the code I reviewed, so this is more of a CRUD foundation so far."
+  },
+  {
+    "slug": "schedule-short",
+    "title": "Schedule Short",
+    "category": "Mobile Apps",
+    "description": "An Expo app that imports a staff schedule CSV and parses it into per-person schedule objects.",
+    "overview": "Users pick a CSV file with expo-document-picker. A custom parser walks the file line by line, detects the day-label row, the date row and role section headers (RN, CST, FA), and builds a Person object for each employee with their dated availability.",
+    "techStack": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "JavaScript",
+      "expo-document-picker"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/scheduleShort",
+    "demoUrl": "",
+    "highlights": [
+      "Hand-written CSV parser that identifies header, date and role-section rows by column content and a regex (d{1,2}-Mon)",
+      "Person class that stores a schedule keyed by date, with a date-to-weekday map",
+      "Role tracking: the current section (RN, CST, FA) is remembered and applied to each person row below it",
+      "getWeek(n) slices the date-keyed schedule into 7-day windows and throws on out-of-range weeks"
+    ],
+    "demoTitle": "Import a schedule",
+    "demoDescription": "Choose a CSV schedule file and the app parses it into structured people and dates.",
+    "demoBullets": [
+      "Only CSV files are accepted",
+      "A Working indicator shows during processing",
+      "Parsed people and counts are logged to the console",
+      "Runs on web, iOS and Android through Expo"
+    ],
+    "codeTitle": "Role-aware CSV row parsing",
+    "codeLanguage": "js",
+    "codeExample": "for (const line of lines) {\n  const columns = line.split(\",\");\n\n  if (columns[4] === \"S\") {\n    dayIndex = columns;\n  }\n  if (/^\\d{1,2}-[A-Za-z]{3}$/.test(columns[5]) && columns[0] !== \"RN\") {\n    dates = columns.slice(0, -1);\n  }\n  if (columns[0] === \"RN\") {\n    current = \"RN\";\n  } else if (columns[0] === \"CST\") {\n    current = \"CST\";\n  } else if (columns[0] === \"FA\" || columns[0] === \"FAs\") {\n    current = \"FA\";\n  }\n  // remaining rows become Person objects keyed by name\n}",
+    "diagramTitle": "Parsing pipeline",
+    "diagramSteps": [
+      {
+        "title": "Pick",
+        "detail": "expo-document-picker returns a CSV file that is validated by type."
+      },
+      {
+        "title": "Scan",
+        "detail": "Each line is split on commas and checked for day-label, date and role rows."
+      },
+      {
+        "title": "Build",
+        "detail": "Name rows create or update Person objects with D, X or B values by date."
+      },
+      {
+        "title": "Query",
+        "detail": "Methods like checkDate and getWeek read the result."
+      }
+    ],
+    "systemDesign": "The Expo app has a screen that calls a file-import component and then a pure parsing function in controller/organize.js, which returns an object of Person instances keyed by name. A small Express server folder also exists. The day.js and week.js controller files are empty placeholders.",
+    "learned": "I learned to parse a messy, real-world spreadsheet export by detecting row types instead of assuming a clean format, and to model the result with a class. The parser is fragile: it splits on commas, so quoted fields would break it, and it relies on fixed column positions. The Person.changeRole method also references a field that does not exist, so I would clean that up and add tests."
+  },
+  {
+    "slug": "authentication",
+    "title": "Authentication",
+    "category": "Full-Stack",
+    "description": "Express and MongoDB authentication API with bcrypt password hashing and JWT token issuing, paired with a React client.",
+    "overview": "A learning project that builds a username/password auth backend. The Express server mounts a router at /api/auth with register and login endpoints, stores users in MongoDB through a Mongoose schema, hashes passwords with bcrypt, and signs JSON Web Tokens with a secret from environment variables.",
+    "techStack": [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "bcrypt",
+      "JWT",
+      "React"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/Authentication",
+    "demoUrl": "",
+    "highlights": [
+      "Registration salts and hashes passwords with bcrypt.genSalt(10) and bcrypt.hash before saving",
+      "Login returns a signed JWT built from the user id, with the secret read from process.env",
+      "Separate jwtHelper utility with generateToken (1 hour expiry) and verifyToken that returns null on failure",
+      "Mongoose schema enforces required, unique and trimmed usernames and has a verifyPassword method using bcrypt.compare",
+      "Generic 'Invalid username or password' message so login does not reveal which part was wrong"
+    ],
+    "demoTitle": "Auth API flow",
+    "demoDescription": "Register a user, then log in to receive a token the client can attach to later requests.",
+    "demoBullets": [
+      "POST /api/auth/register creates a user with a hashed password",
+      "Duplicate usernames are rejected with a 400",
+      "POST /api/auth/login checks the password and returns a JWT",
+      "Configuration such as MONGODB_URI and JWT_SECRET comes from environment variables"
+    ],
+    "codeTitle": "Register route with salted bcrypt hashing",
+    "codeLanguage": "js",
+    "codeExample": "router.post(\"/register\", async (req, res) => {\n  try {\n    const { username, password } = req.body;\n    const existingUser = await User.findOne({ username });\n    if (existingUser) {\n      return res.status(400).json({ message: \"User already exists\" });\n    }\n    const salt = await bcrypt.genSalt(10);\n    const hashedPassword = await bcrypt.hash(password, salt);\n    const user = new User({ username, password: hashedPassword });\n    const savedUser = await user.save();\n    res.json({ message: \"User registered successfully\", userId: savedUser._id });\n  } catch (error) {\n    console.log(error);\n    res.status(500).json({ message: \"Internal Server error\" });\n  }\n});",
+    "diagramTitle": "Register and login flow",
+    "diagramSteps": [
+      {
+        "title": "Client request",
+        "detail": "React client posts username and password as JSON to /api/auth."
+      },
+      {
+        "title": "Lookup",
+        "detail": "Mongoose queries the User collection by username."
+      },
+      {
+        "title": "Hash or compare",
+        "detail": "Register hashes with a bcrypt salt; login compares against the stored hash."
+      },
+      {
+        "title": "Token",
+        "detail": "On successful login the server signs a JWT and returns it."
+      }
+    ],
+    "systemDesign": "A three-folder repo (client, front, server). The server is an Express app with CORS and JSON middleware, a mounted auth router, a Mongoose User model, and a small JWT helper module. Secrets and the database URI are read from environment variables.",
+    "learned": "I learned the basic shape of a token-based auth backend: salting and hashing passwords, never storing plaintext, and signing JWTs with an env secret. The code is still a work in progress. The login route calls bcrypt.password instead of bcrypt.compare, signs its token without an expiry (the helper has a 1 hour one but the route does not use it), and jwtHelper mixes ES imports with module.exports. Writing it showed me how easy those mistakes are, and that I need tests and a verify-token middleware to protect routes."
+  },
+  {
+    "slug": "login-page",
+    "title": "Login Page",
+    "category": "Full-Stack",
+    "description": "React and Express registration and login app backed by MySQL, with bcrypt password hashing and an email existence check.",
+    "overview": "A full-stack authentication demo. The Express server connects to a local MySQL database, creates the database and a user table if they are missing, and exposes routes for adding, reading, updating and deleting users plus a login route that compares a submitted password against a stored bcrypt hash. The React client provides the registration and login forms with validation.",
+    "techStack": [
+      "React",
+      "Express",
+      "Node.js",
+      "MySQL",
+      "bcrypt",
+      "CORS"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/login-page",
+    "demoUrl": "",
+    "highlights": [
+      "Passwords hashed with bcrypt (10 salt rounds) before insertion into MySQL",
+      "Server bootstraps itself: falls back to creating the testServer database and a user table with a UNIQUE email column",
+      "Login route fetches the user by email and uses bcrypt.compare on the stored hash",
+      "/checkEmail endpoint returns { exists } so the client can validate an email before registering",
+      "README describes password validation and email checking on the React side"
+    ],
+    "demoTitle": "Register and log in",
+    "demoDescription": "Sign up with an email and password, then log in against the MySQL-backed server.",
+    "demoBullets": [
+      "Registration form validates the password and checks whether the email already exists",
+      "New passwords are stored only as bcrypt hashes",
+      "Login responds with success, incorrect password, or not found",
+      "Requires a local MySQL server and the Express server running"
+    ],
+    "codeTitle": "Login with bcrypt hash comparison",
+    "codeLanguage": "js",
+    "codeExample": "app.post(\"/login\", (req, res) => {\n  const { email, password } = req.body;\n  let sql = `SELECT * FROM user WHERE email='${email}'`;\n  db.query(sql, async (err, results) => {\n    if (results.length > 0) {\n      try {\n        const match = await bcrypt.compare(password, results[0].password);\n        if (match) {\n          res.send(`User ${email} logged in successfully`);\n        } else {\n          res.send('Incorrect password');\n        }\n      } catch (bcryptError) {\n        res.status(500).send('Server error');\n      }\n    }\n  });\n});",
+    "diagramTitle": "Request path",
+    "diagramSteps": [
+      {
+        "title": "React form",
+        "detail": "Validates input and calls the Express API with the email and password."
+      },
+      {
+        "title": "Express route",
+        "detail": "CORS and body-parser middleware parse the JSON request."
+      },
+      {
+        "title": "MySQL query",
+        "detail": "The user row is looked up or inserted in the user table."
+      },
+      {
+        "title": "bcrypt",
+        "detail": "Passwords are hashed on write and compared on login."
+      }
+    ],
+    "systemDesign": "A two-folder monolith: a client React app and a single server.js Express file. The server owns a single MySQL connection and creates its schema on startup. Everything is on localhost with hard-coded connection settings.",
+    "learned": "I learned how a full-stack login fits together and how bcrypt hashing works with a SQL database. Honestly, the server is a learning prototype: many routes are GET requests that mutate data, and queries are built by string interpolation, which is open to SQL injection. Login also returns plain text and no session or token. If I revisit it I would use parameterized queries, POST/DELETE verbs, and issue a token or session."
+  },
+  {
+    "slug": "todo",
+    "title": "ToDo (React Native Task Tracker)",
+    "category": "Mobile",
+    "description": "An Expo / React Native to-do app with status counters and tasks persisted on-device with AsyncStorage.",
+    "overview": "ToDo is a React Native app built with Expo. Tasks are instances of a small Task class (text, date, type, tags, description) held in React state and serialized to AsyncStorage as JSON. A header row shows live counters for Complete, ToDo, Progress and Wait. A simpler sibling repo, ToDoIOS, is a minimal version of the same idea that keeps tasks in memory and tracks completion in a map keyed by task text.",
+    "techStack": [
+      "React Native",
+      "Expo",
+      "JavaScript",
+      "AsyncStorage"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/ToDo",
+    "demoUrl": "",
+    "highlights": [
+      "Persists the task list as JSON in AsyncStorage and rehydrates it into Task objects on startup",
+      "Status counters (Complete, ToDo, Progress, Wait) built from an object map and memoized with useMemo",
+      "Add flow with input validation and a collapsible menu component",
+      "ToDoIOS variant: FlatList rendering, tap-to-strike-through, and a two-press confirm for Remove All"
+    ],
+    "demoTitle": "Task list walkthrough",
+    "demoDescription": "Add a task, see the counters update, and reopen the app to confirm tasks are still there.",
+    "demoBullets": [
+      "Tap Add Task to open the input menu",
+      "Empty input is rejected with an alert",
+      "Tasks are saved to AsyncStorage after each add",
+      "Status chips show a count per category"
+    ],
+    "codeTitle": "Persist and rehydrate tasks",
+    "codeLanguage": "js",
+    "codeExample": "const saveTasks = async (tasks) => {\n  try {\n    const jsonValue = JSON.stringify(tasks);\n    await AsyncStorage.setItem('tasks', jsonValue);\n  } catch (e) {\n    console.error(\"Error saving tasks:\", e);\n  }\n};\n\nconst loadTasks = async () => {\n  const jsonValue = await AsyncStorage.getItem('tasks');\n  if (jsonValue != null) {\n    const parsedTasks = JSON.parse(jsonValue).map(task => new Task(task.task, new Date(task.date), task.type, task.tags, task.description));\n    setTasks(parsedTasks);\n  }\n};",
+    "diagramTitle": "Data flow",
+    "diagramSteps": [
+      {
+        "title": "Input",
+        "detail": "User types a task and description in the Menu component; empty input is rejected."
+      },
+      {
+        "title": "State",
+        "detail": "A new Task object is appended to the tasks array held in useState."
+      },
+      {
+        "title": "Persist",
+        "detail": "The array is stringified and written to AsyncStorage under the 'tasks' key."
+      },
+      {
+        "title": "Rehydrate",
+        "detail": "On mount, useEffect reads the key and rebuilds Task instances, restoring Date objects."
+      }
+    ],
+    "systemDesign": "A single screen component owns all state and passes setters down to child components (Menu, TaskBox). Storage is the only persistence layer, with no backend. Because JSON drops class methods and Dates become strings, loading re-wraps each record in the Task class.",
+    "learned": "I learned that JSON serialization loses class methods and turns Dates into strings, so I had to rebuild Task instances when loading from AsyncStorage. I also learned the code works but has rough edges: the component holds many state variables and logs a lot, and my ToDoIOS version keys completion by task text, which breaks with duplicate tasks. Next time I would use ids."
+  },
+  {
+    "slug": "todogeo",
+    "title": "toDoGeo (Task Countdown App)",
+    "category": "Mobile",
+    "description": "An Expo Router TypeScript client with a task model that computes a live time-remaining countdown, plus a stub server folder.",
+    "overview": "toDoGeo is an early-stage Expo Router app with a client and server folder. The working part is the ToDo component and a Task class that stores title, description, due date and completion, and computes a days/hours/minutes/seconds string from the due date. A one-second interval re-renders the list, and the remaining time is color-styled by urgency. The Locations component is only a stub, so no geofencing or distance math exists in the code yet.",
+    "techStack": [
+      "React Native",
+      "Expo Router",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/toDoGeo",
+    "demoUrl": "",
+    "highlights": [
+      "Task class computes a days/hr/min/sec countdown with floor and modulo math on millisecond differences",
+      "setInterval tick re-renders the list every second, with cleanup on unmount",
+      "Urgency styling: more than 3 days, more than 1 day, or less than 1 day",
+      "Includes a Jest test file for the Task class"
+    ],
+    "demoTitle": "Countdown list",
+    "demoDescription": "Seeded tasks show live ticking countdowns that change color as the due date approaches.",
+    "demoBullets": [
+      "Toggle a task complete with a Switch",
+      "Clear completed removes finished tasks",
+      "Countdown updates every second",
+      "Color changes at 3-day and 1-day thresholds"
+    ],
+    "codeTitle": "Time remaining calculation",
+    "codeLanguage": "js",
+    "codeExample": "getTimeRemainingString() { \n    // 1 day, 2hr, 3m, 4s\n    let timeRemaining = this.date - Date.now();\n    let days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));\n    let hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));\n    let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));\n    let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);\n    return days + \" days, \" + hours + \" hr, \" + minutes + \" m, \" + seconds + \" s\";\n}",
+    "diagramTitle": "Render loop",
+    "diagramSteps": [
+      {
+        "title": "Model",
+        "detail": "Task holds title, description, due Date and completed flag."
+      },
+      {
+        "title": "Tick",
+        "detail": "useEffect sets a 1s interval that copies the task array to force a re-render."
+      },
+      {
+        "title": "Compute",
+        "detail": "Each render subtracts Date.now() from the due date and formats the parts."
+      },
+      {
+        "title": "Style",
+        "detail": "A threshold function picks a high, medium or low urgency style."
+      }
+    ],
+    "systemDesign": "The app uses file-based routing; the index screen composes User and ToDo components. Tasks are hardcoded sample data in component state, with no persistence or networking yet. The server folder only contains a package.json, and the Locations component is a placeholder for the intended location feature.",
+    "learned": "I learned how to turn a millisecond difference into days, hours, minutes and seconds with floor and modulo, and how to run a timer safely in a React effect. Being honest about the state of the repo: the location-based part is not implemented yet, the data is hardcoded, and the Clear completed handler mutates state directly, which I left as a TODO to refactor."
+  },
+  {
+    "slug": "my-life",
+    "title": "my-life (Notes App with Express + MySQL API)",
+    "category": "Full Stack",
+    "description": "A React web app scaffold paired with an Express and MySQL REST API for storing notes.",
+    "overview": "my-life is a Create React App front end (App, Main and Nav components) with a Node/Express server that connects to a local MySQL database, creates the 'notes' database and table if missing, and exposes endpoints to add, fetch, list and delete notes. It is an early prototype: the sibling repos noteDiary and CalenderDiary are near-empty scaffolds, so they are not documented separately.",
+    "techStack": [
+      "React",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "CORS"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/my-life",
+    "demoUrl": "",
+    "highlights": [
+      "Express REST API with add, get, delete and list-all note routes",
+      "Self-bootstrapping schema: creates the database and notes table if absent",
+      "Table uses auto-increment id and a default CURRENT_TIMESTAMP date_created column",
+      "Insert uses mysql's parameterized SET ? form"
+    ],
+    "demoTitle": "Notes API",
+    "demoDescription": "Run the server on port 4000 and call the note endpoints from the React client or any HTTP tool.",
+    "demoBullets": [
+      "POST /addnote with note and subject",
+      "GET /getallnotes returns all rows as JSON",
+      "DELETE /deletenote/:id removes a note",
+      "Requires a local MySQL server"
+    ],
+    "codeTitle": "Insert a note",
+    "codeLanguage": "js",
+    "codeExample": "app.post(\"/addnote\", (req, res) => {\n  let note = { note: req.body.note, subject: req.body.subject };\n  let sql = \"INSERT INTO notes SET ?\";\n  let query = db.query(sql, note, (err, result) => {\n    if (err) console.log(err);\n    res.send(`Note added with ID: ${result.insertId}`);\n  });\n});",
+    "diagramTitle": "Request flow",
+    "diagramSteps": [
+      {
+        "title": "Client",
+        "detail": "The React app sends JSON to the Express server."
+      },
+      {
+        "title": "Middleware",
+        "detail": "cors and body-parser allow cross-origin calls and parse JSON bodies."
+      },
+      {
+        "title": "Route",
+        "detail": "A route builds a SQL statement for create, read or delete."
+      },
+      {
+        "title": "MySQL",
+        "detail": "The notes table stores id, note text, subject and creation timestamp."
+      }
+    ],
+    "systemDesign": "A two-tier setup: a CRA front end and a single-file Express server on port 4000 using callback-style mysql queries. The schema is created at startup, so no migration step is needed locally. The database connects as root with an empty password, which is only suitable for local development.",
+    "learned": "I learned how to wire an Express server to MySQL and bootstrap a schema at startup. Looking back honestly, the code has flaws: the get and delete routes build SQL by string interpolation, which is open to SQL injection, errors are only logged so the response can still crash, and getnote does not return the row. I would use parameterized queries and proper error handling next time."
+  },
+  {
+    "slug": "fitness-site",
+    "title": "Fitness Site",
+    "category": "Web Development",
+    "description": "A multi-page fitness website built with plain HTML, CSS and vanilla JavaScript, featuring muscle group pages, a video carousel, dark mode and form validation.",
+    "overview": "Fitness Site is a static front-end project with no framework or build step. It has a main fitness.html page, a catalog page, per-muscle-group pages, and a single script.js that handles section switching, a vertical video carousel, a dark mode toggle and contact form validation.",
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/fitness-site",
+    "demoUrl": "",
+    "highlights": [
+      "Class-based section switching with a toggleDisplay helper that hides the current section and shows the next",
+      "Vertical video carousel that rotates items by moving DOM nodes with insertBefore and appendChild",
+      "Dark mode implemented by toggling a single dark-mode class on the body from a checkbox",
+      "Contact form validation with required-field checks and a regular expression for email format"
+    ],
+    "demoTitle": "Fitness Site Walkthrough",
+    "demoDescription": "A tour of the single-page navigation, muscle group video carousel and theme toggle.",
+    "demoBullets": [
+      "Switch between sections without a page reload",
+      "Scroll through exercise videos with up and down controls",
+      "Toggle dark mode with one checkbox",
+      "Submit the contact form and see validation messages"
+    ],
+    "codeTitle": "Section navigation and dark mode toggle",
+    "codeLanguage": "js",
+    "codeExample": "function toggleDisplay(className) {\n    if (currentClass) {\n        const elementsToHide = document.getElementsByClassName(currentClass);\n        for (let element of elementsToHide) {\n            element.style.display = \"none\";\n        }\n    }\n    const elementsToShow = document.getElementsByClassName(className);\n    for (let element of elementsToShow) {\n        element.style.display = \"block\";\n    }\n    currentClass = className;\n}\n\ndocument.getElementById('darkMode').addEventListener('change', function(event) {\n    document.body.classList.toggle('dark-mode', event.target.checked);\n});",
+    "diagramTitle": "Client-side interaction flow",
+    "diagramSteps": [
+      {
+        "title": "Page load",
+        "detail": "fitness.html loads styles.css and script.js; the DOMContentLoaded handler wires up the carousel buttons."
+      },
+      {
+        "title": "Navigation",
+        "detail": "toggleDisplay hides the elements of the current class and shows those of the requested class, tracking state in a module-level variable."
+      },
+      {
+        "title": "Carousel",
+        "detail": "Up and down buttons move video-item nodes within the carousel container to rotate the list."
+      },
+      {
+        "title": "Theme and forms",
+        "detail": "A checkbox toggles the dark-mode class, and validateForm checks name and email before submit."
+      }
+    ],
+    "systemDesign": "A static multi-page site served directly from files. Layout and theme live in CSS (styles.css, catalog_style.css), behavior lives in one script.js, and muscle group content is split into separate pages under the musclegroups folder. State is kept in the DOM and one global variable, with no backend.",
+    "learned": "This project taught me how far plain DOM APIs can go without a framework. Looking back, the navigation code has rough edges: currentClass starts as an HTMLCollection rather than a string, and the carousel registers two click handlers on the up button that overlap. I would clean those up, and a component framework would make the state handling simpler."
+  },
+  {
+    "slug": "spotify",
+    "title": "React Spotify Playlist App (Work in Progress)",
+    "category": "Web Development",
+    "description": "An in-progress React playlist builder with a client split into SearchBar, SearchResults, Playlist, Tracklist and Track components, plus an Express and MySQL server scaffold.",
+    "overview": "This repo has a client/server layout. The React client defines a component tree for searching tracks and building a playlist, with App holding the state. The Spotify API module and several App handlers are still stubs, and the Express server currently only sets up middleware and a MySQL connection.",
+    "techStack": [
+      "React",
+      "JavaScript",
+      "CSS Modules",
+      "Node.js",
+      "Express",
+      "MySQL"
+    ],
+    "repoUrl": "https://github.com/josephmusngi21/spotify",
+    "demoUrl": "",
+    "highlights": [
+      "Component tree split by responsibility: App, SearchBar, SearchResults, Playlist, Tracklist and Track",
+      "App owns search results, playlist name and playlist tracks in useState and passes handlers down",
+      "Handlers wrapped in useCallback, with addTracks skipping tracks already in the playlist by id",
+      "Express server scaffold with cors, body-parser and a MySQL connection, with bcrypt required for later auth work"
+    ],
+    "demoTitle": "Playlist Builder Design",
+    "demoDescription": "The intended flow is to search for tracks, add them to a named playlist and save it. The README describes this flow, but the Spotify API connection and several handlers are not implemented yet.",
+    "demoBullets": [
+      "Search term is passed from SearchBar up to App",
+      "Results render through SearchResults and Tracklist",
+      "Add button appends a track unless its id is already present",
+      "Remove, rename and save handlers are stubbed"
+    ],
+    "codeTitle": "Deduplicated add-track handler",
+    "codeLanguage": "jsx",
+    "codeExample": "const [searchResult, setSearchResult] = useState([]);\nconst [playlistName, setplaylistName] = useState(\"New Playlist\");\nconst [playlistTracks, setPlaylistTracks] = useState([]);\n\nconst search = useCallback((term) => {\n  Spotify.search(term).then(setSearchResult);\n}, []);\n\nconst addTracks = useCallback(\n  (track) => {\n    if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))\n      return;\n    setPlaylistTracks((prevTrack) => [...prevTrack, track]);\n}, [playlistTracks]);",
+    "diagramTitle": "Component data flow",
+    "diagramSteps": [
+      {
+        "title": "SearchBar",
+        "detail": "Keeps the term in local state and calls the onSearch prop from App."
+      },
+      {
+        "title": "App state",
+        "detail": "Holds search results, playlist name and playlist tracks, and defines the handlers."
+      },
+      {
+        "title": "Tracklist and Track",
+        "detail": "Render arrays of track objects with add or remove buttons wired to App callbacks."
+      },
+      {
+        "title": "Spotify util",
+        "detail": "spotify.js is meant to talk to the Spotify API but currently contains only a comment."
+      }
+    ],
+    "systemDesign": "A React client in client/ with CSS Modules per component, and an Express server in server/ with cors, JSON body parsing and a MySQL connection. State lives in App and flows down as props, with callbacks flowing back up. The Spotify API and OAuth integration are not implemented yet.",
+    "learned": "I practiced lifting state up and structuring components around single responsibilities. The project is honestly unfinished: removeTrack, updatePlaylist and savePlaylist are empty stubs, the Spotify module has no API calls, and the server has no routes. Finishing it would mean implementing the OAuth flow and those handlers."
   }
 ]
