@@ -48,11 +48,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-transparent text-slate-800">
         <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-white/75 backdrop-blur-xl">
-          <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
+          <div className="mx-auto           flex w-full max-w-6xl flex-col items-start gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-4 lg:px-10">
             <Link href="/" className="text-sm font-semibold tracking-[0.2em] uppercase text-slate-900">
               Joseph Musngi
             </Link>
-            <nav aria-label="Main navigation" className="flex items-center gap-2 text-sm text-slate-600">
+                      <nav aria-label="Main navigation" className="-ml-3 flex flex-wrap items-center gap-1 text-sm text-slate-600 sm:ml-0 sm:gap-2">
               <SiteNavLink href="/" label="Home" />
               <SiteNavLink href="/about" label="About" />
               <SiteNavLink href="/coding" label="Coding" />

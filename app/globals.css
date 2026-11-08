@@ -25,3 +25,15 @@ body {
 a {
   text-decoration: none;
 }
+
+/* Single-column grids default to minmax(0, 1fr) so wide content can't push cards past the phone viewport. */
+@layer base {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+html,
+body {
+  overflow-x: clip;
+}
