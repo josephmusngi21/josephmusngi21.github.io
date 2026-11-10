@@ -19,20 +19,20 @@ export default function CodeBlock({ title, language = "tsx", code }: CodeBlockPr
 
   return (
     <section className="overflow-hidden rounded-3xl border border-stone-200 bg-stone-50 text-slate-900 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.14)]">
-      <div className="flex items-center justify-between gap-4 border-b border-stone-200 px-5 py-4">
-        <div>
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 px-4 py-4 sm:px-5">
+        <div className="min-w-0">
           <p className="text-sm font-medium text-slate-800">{title}</p>
           <p className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">{language}</p>
         </div>
         <button
           type="button"
           onClick={handleCopy}
-          className="rounded-full border border-stone-300 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-600 transition-colors hover:bg-stone-100"
+          className="min-h-11 shrink-0 rounded-full border border-stone-300 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-600 transition-colors hover:bg-stone-100"
         >
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="overflow-x-auto px-5 py-5 text-sm leading-7 text-slate-700">
+      <pre tabIndex={0} aria-label={`${title} code sample`} className="overflow-x-auto px-4 py-5 text-sm leading-7 text-slate-700 focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-slate-700 sm:px-5">
         <code>{code}</code>
       </pre>
     </section>
