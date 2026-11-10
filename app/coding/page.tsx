@@ -64,11 +64,12 @@ export default function CodingPortfolioPage() {
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
               A few real excerpts from featured projects, chosen to show the
-              practical logic behind the interfaces.
+              practical logic behind the interfaces. Expand a highlight to view
+              the code and its source.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="mt-6 grid items-start gap-6 lg:grid-cols-2">
             {codeHighlights.map((highlight) => {
               const project = featuredProjects.find(
                 (item) => item.slug === highlight.projectSlug,
@@ -79,43 +80,50 @@ export default function CodingPortfolioPage() {
               }
 
               return (
-                <article
+                <details
                   key={`${highlight.projectSlug}-${highlight.sourcePath}`}
-                  className="rounded-3xl border border-stone-200 bg-white/90 p-5 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)] sm:p-6"
+                  className="group min-w-0 rounded-3xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]"
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-sm font-semibold text-slate-900">
-                      {project.title}
+                  <summary className="cursor-pointer rounded-3xl p-5 text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700 sm:p-6">
+                    <span className="text-sm font-semibold">{project.title}</span>
+                    <h3 className="mt-2 text-base font-semibold">
+                      {highlight.title}
+                    </h3>
+                    <span className="mt-3 block text-xs font-medium text-slate-600 group-open:hidden">
+                      Show code
+                    </span>
+                    <span className="mt-3 hidden text-xs font-medium text-slate-600 group-open:block">
+                      Hide code
+                    </span>
+                  </summary>
+                  <div className="border-t border-stone-200 p-5 sm:p-6">
+                    <p className="mb-4 text-sm leading-6 text-slate-600">
+                      {highlight.description}
                     </p>
-                    <Link
-                      href={`/coding/${project.slug}`}
-                      className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
-                    >
-                      Project details
-                    </Link>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {highlight.description}
-                  </p>
-                  <div className="mt-4">
                     <CodeBlock
                       title={highlight.title}
                       language={highlight.language}
                       code={highlight.code}
                     />
-                  </div>
-                  <p className="mt-3 break-all text-xs text-slate-500">
-                    Source:{" "}
-                    <a
-                      href={highlight.sourceUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-slate-700 underline decoration-stone-300 underline-offset-4 hover:text-slate-900"
+                    <p className="mt-3 break-all text-xs text-slate-500">
+                      Source:{" "}
+                      <a
+                        href={highlight.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-medium text-slate-700 underline decoration-stone-300 underline-offset-4 hover:text-slate-900"
+                      >
+                        {highlight.sourcePath}
+                      </a>
+                    </p>
+                    <Link
+                      href={`/coding/${project.slug}`}
+                      className="mt-4 inline-block text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
                     >
-                      {highlight.sourcePath}
-                    </a>
-                  </p>
-                </article>
+                      Project details
+                    </Link>
+                  </div>
+                </details>
               );
             })}
           </div>
