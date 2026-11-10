@@ -3,6 +3,7 @@ import path from "path";
 
 import Image from "next/image";
 import Link from "next/link";
+import PhotoViewer from "@/app/components/PhotoViewer";
 
 export const metadata = {
   title: "Photography",
@@ -53,6 +54,7 @@ export default function PhotographyPortfolioPage() {
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
               These photos were taken in Arizona using a Canon AE-1 Program camera.
+              {" "}Select any photo to see the full frame, or open its original file to zoom in.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/" className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
@@ -97,6 +99,7 @@ export default function PhotographyPortfolioPage() {
                 key={item.fileName}
                 className="group overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-45px_rgba(15,23,42,0.24)]"
               >
+                <PhotoViewer src={`/photography/${encodeURIComponent(item.fileName)}`} caption={item.caption}>
                 <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
                   <Image
                     src={`/photography/${item.fileName}`}
@@ -107,6 +110,7 @@ export default function PhotographyPortfolioPage() {
                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
+                </PhotoViewer>
                 <figcaption className="flex items-center justify-between gap-3 border-t border-stone-200 px-5 py-4">
                   <div>
                     <p className="text-sm font-medium text-slate-900">{item.caption}</p>
@@ -137,6 +141,7 @@ export default function PhotographyPortfolioPage() {
                   key={item.fileName}
                   className="mb-5 break-inside-avoid overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-50px_rgba(15,23,42,0.2)]"
                 >
+                  <PhotoViewer src={`/photography/${encodeURIComponent(item.fileName)}`} caption={item.caption}>
                   <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
                     <Image
                       src={`/photography/${item.fileName}`}
@@ -147,6 +152,7 @@ export default function PhotographyPortfolioPage() {
                       className="object-cover"
                     />
                   </div>
+                  </PhotoViewer>
                   <figcaption className="border-t border-stone-200 px-5 py-4">
                     <p className="text-sm font-medium text-slate-900">{item.caption}</p>
                     <p className="mt-1 text-xs uppercase tracking-[0.22em] text-stone-500">Archive</p>
