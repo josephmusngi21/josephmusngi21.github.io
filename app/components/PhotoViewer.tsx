@@ -40,14 +40,23 @@ export default function PhotoViewer({ src, caption, children }: PhotoViewerProps
         className="relative block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-slate-900"
       >
         {children}
-        <span className="absolute bottom-3 right-3 rounded-full bg-slate-900/80 px-3 py-2 text-xs font-medium text-white">
-          View full image
+        <span className="flex min-h-12 items-center justify-between gap-3 border-t border-stone-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-stone-50">
+          <span>View full image</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 shrink-0">
+            <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+          </svg>
         </span>
       </a>
       <dialog
         ref={dialogRef}
         aria-label={caption}
         onClose={() => setOpen(false)}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            dialogRef.current?.close();
+          }
+        }}
         className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-slate-950 p-0 text-white backdrop:bg-slate-950/90"
       >
         <div className="flex h-full flex-col">

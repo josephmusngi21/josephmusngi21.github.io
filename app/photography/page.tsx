@@ -39,12 +39,11 @@ export default function PhotographyPortfolioPage() {
   const galleryItems = buildGalleryItems();
   const featuredItems = galleryItems.slice(0, 6);
   const remainingItems = galleryItems.slice(6);
-  const featuredCount = Math.min(6, galleryItems.length);
 
   return (
     <main className="flex-1">
-      <section className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-end">
+      <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-16">
+        <div className="max-w-3xl">
           <div className="space-y-5">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500">
               Photography Portfolio
@@ -53,42 +52,35 @@ export default function PhotographyPortfolioPage() {
               Arizona moments captured on film.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              These photos were taken in Arizona using a Canon AE-1 Program camera.
-              {" "}Select any photo to see the full frame, or open its original file to zoom in.
+              A collection of Arizona scenes shot on a Canon AE-1 Program.
+              Select a photo or its “View full image” link to see the uncropped
+              frame. The viewer also links to the original file for a closer look.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/" className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
-                Back home
-              </Link>
+              <a href="#selected-work" className="inline-flex min-h-11 items-center rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
+                Explore the gallery
+              </a>
               <Link href="/about" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-stone-300 hover:bg-white">
                 About me
               </Link>
             </div>
           </div>
 
-          <div className="grid gap-4 rounded-4xl border border-stone-200 bg-white/80 p-5 shadow-[0_24px_80px_-50px_rgba(15,23,42,0.18)] sm:grid-cols-3">
-            <div className="rounded-3xl border border-stone-200 bg-stone-50 p-4 sm:col-span-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Photos loaded</p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">{galleryItems.length}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                Current set from Arizona, photographed on a <span className="font-medium text-slate-900">Canon AE-1 Program</span>.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-stone-200 bg-linear-to-br from-stone-100 via-white to-amber-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">Camera note</p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">{featuredCount}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                This portfolio is currently focused on work shot with the Canon AE-1 Program.
-              </p>
-            </div>
-          </div>
         </div>
 
-        <div className="mt-12 space-y-6">
+        <nav aria-label="Gallery sections" className="mt-8 flex flex-wrap items-center gap-3 border-y border-stone-200 py-3">
+          <span className="mr-auto text-sm text-stone-500">{galleryItems.length} photographs</span>
+          <a href="#selected-work" className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 hover:bg-stone-100">Selected work</a>
+          {remainingItems.length > 0 ? (
+            <a href="#archive" className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 hover:bg-stone-100">More photographs</a>
+          ) : null}
+        </nav>
+
+        <section id="selected-work" aria-labelledby="selected-work-heading" className="mt-10 scroll-mt-28 space-y-6">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Featured frames</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">Selected work</h2>
+              <h2 id="selected-work-heading" className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">Selected work</h2>
             </div>
           </div>
 
@@ -100,16 +92,16 @@ export default function PhotographyPortfolioPage() {
                 className="group overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-45px_rgba(15,23,42,0.24)]"
               >
                 <PhotoViewer src={`/photography/${encodeURIComponent(item.fileName)}`} caption={item.caption}>
-                <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
-                  <Image
-                    src={`/photography/${item.fileName}`}
-                    alt={item.caption}
-                    fill
-                    quality={100}
-                    sizes="(min-width: 1536px) 22vw, (min-width: 1280px) 24vw, (min-width: 768px) 48vw, 100vw"
-                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
+                  <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
+                    <Image
+                      src={`/photography/${item.fileName}`}
+                      alt={item.caption}
+                      fill
+                      quality={100}
+                      sizes="(min-width: 1536px) 22vw, (min-width: 1280px) 24vw, (min-width: 768px) 48vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
                 </PhotoViewer>
                 <figcaption className="flex items-center justify-between gap-3 border-t border-stone-200 px-5 py-4">
                   <div>
@@ -126,13 +118,13 @@ export default function PhotographyPortfolioPage() {
               No images found yet. Upload a photo into public/photography.
             </div>
           )}
-        </div>
+        </section>
 
         {remainingItems.length > 0 ? (
-          <div className="mt-12 space-y-6">
+          <section id="archive" aria-labelledby="archive-heading" className="mt-12 scroll-mt-28 space-y-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">Archive</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">Complete set</h2>
+              <h2 id="archive-heading" className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">More photographs</h2>
             </div>
 
             <div className="columns-1 gap-5 sm:columns-2 xl:columns-3">
@@ -142,16 +134,16 @@ export default function PhotographyPortfolioPage() {
                   className="mb-5 break-inside-avoid overflow-hidden rounded-4xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-50px_rgba(15,23,42,0.2)]"
                 >
                   <PhotoViewer src={`/photography/${encodeURIComponent(item.fileName)}`} caption={item.caption}>
-                  <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
-                    <Image
-                      src={`/photography/${item.fileName}`}
-                      alt={item.caption}
-                      fill
-                      quality={100}
-                      sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, (min-width: 640px) 48vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
+                    <div className={`relative ${item.aspectClass} overflow-hidden bg-stone-100`}>
+                      <Image
+                        src={`/photography/${item.fileName}`}
+                        alt={item.caption}
+                        fill
+                        quality={100}
+                        sizes="(min-width: 1536px) 30vw, (min-width: 1280px) 32vw, (min-width: 640px) 48vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
                   </PhotoViewer>
                   <figcaption className="border-t border-stone-200 px-5 py-4">
                     <p className="text-sm font-medium text-slate-900">{item.caption}</p>
@@ -160,8 +152,11 @@ export default function PhotographyPortfolioPage() {
                 </figure>
               ))}
             </div>
-          </div>
+          </section>
         ) : null}
+        <a href="#selected-work" className="mt-8 inline-flex min-h-11 items-center py-2 text-sm font-medium text-slate-700 hover:text-slate-900">
+          Back to selected work
+        </a>
       </section>
     </main>
   );
