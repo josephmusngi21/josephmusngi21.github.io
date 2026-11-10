@@ -6,6 +6,7 @@ import Diagram from "@/app/components/Diagram";
 import ArchitectureDiagram from "@/app/components/ArchitectureDiagram";
 import { DeepDive, EngineeringLog } from "@/app/components/DeepDive";
 import codingProjects from "@/app/data/coding-projects.json";
+import { codeHighlights } from "@/app/data/code-highlights";
 
 type CodingProject = (typeof codingProjects)[number];
 
@@ -42,6 +43,10 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
   if (!project) {
     notFound();
   }
+
+  const codeHighlight = codeHighlights.find(
+    (highlight) => highlight.projectSlug === project.slug,
+  );
 
   return (
     <main className="flex-1">
@@ -110,7 +115,24 @@ export default async function CodingProjectPage({ params }: { params: Promise<{ 
 
         <div className="mt-10 grid gap-6">
           <Demo title={project.demoTitle} description={project.demoDescription} bullets={project.demoBullets} />
-          <CodeBlock title={project.codeTitle} language={project.codeLanguage} code={project.codeExample} />
+          <CodeBlock
+            title={codeHighlight?.title ?? project.codeTitle}
+            language={codeHighlight?.language ?? project.codeLanguage}
+            code={codeHighlight?.code ?? project.codeExample}
+          />
+          {codeHighlight ? (
+            <p className="text-xs text-slate-500">
+              Source:{" "}
+              <a
+                href={codeHighlight.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-slate-700 underline decoration-stone-300 underline-offset-4 hover:text-slate-900"
+              >
+                {codeHighlight.sourcePath}
+              </a>
+            </p>
+          ) : null}
           <Diagram title={project.diagramTitle} steps={project.diagramSteps} />
           {project.architecture ? (
             <ArchitectureDiagram title="Architecture" architecture={project.architecture} />
