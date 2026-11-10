@@ -116,8 +116,8 @@ export default function CodingGitHubSection({
   }, [githubUsername]);
 
   return (
-    <section className="mt-10 rounded-3xl border border-stone-200 bg-white/90 p-6 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
-      <div className="border-b border-slate-200 bg-slate-900 px-6 py-5 text-white">
+    <section className="mt-10 overflow-hidden rounded-3xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]">
+      <div className="border-b border-slate-200 bg-slate-900 px-4 py-5 text-white sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">GitHub Profile</p>
@@ -130,14 +130,14 @@ export default function CodingGitHubSection({
             href={githubProfileUrl}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-slate-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-slate-400 hover:bg-slate-800"
+            className="inline-flex min-h-11 items-center rounded-full border border-slate-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-slate-400 hover:bg-slate-800"
           >
             Visit GitHub Profile
           </Link>
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
           <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1">Problem-solving mindset</span>
           <span className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1">Consistent practice</span>
@@ -147,7 +147,7 @@ export default function CodingGitHubSection({
 
         <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-medium text-slate-900">github.com/{githubUsername}</p>
+            <p className="break-all text-sm font-medium text-slate-900">github.com/{githubUsername}</p>
             <p className="mt-1 text-sm leading-7 text-slate-600">
               A quick look at the projects and activity that support the work showcased on this page.
             </p>
@@ -183,7 +183,7 @@ export default function CodingGitHubSection({
               rel="noreferrer"
               className="rounded-2xl border border-stone-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-stone-300"
             >
-              <p className="text-sm font-semibold text-slate-900">{repo.name}</p>
+              <p className="break-words text-sm font-semibold text-slate-900">{repo.name}</p>
               <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">
                 {repo.description || "No description provided yet."}
               </p>
