@@ -24,42 +24,72 @@ export default function CodingPortfolioPage() {
 
   return (
     <main className="flex-1">
-      <section className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-16">
         <div className="max-w-3xl space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500">
             Coding
           </p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-            Code that reflects how I think and build.
+            Explore what I build.
           </h1>
           <p className="text-lg leading-8 text-slate-600">
-            I enjoy building software that is clean, practical, and easy to use. The projects here show how I approach problem-solving, structure ideas, and turn concepts into polished results.
+            Mobile apps, web tools, and embedded experiments. Start with a
+            featured project, peek at the code, or dig into the engineering
+            decisions behind it.
           </p>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/" className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
-            Back home
+          <a href="#featured-projects" className="rounded-full border border-stone-200 bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800">
+            Explore featured projects
+          </a>
+          <Link href="/coding/technical" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-stone-300 hover:bg-white">
+            Technical deep dives
           </Link>
           <Link href={githubProfileUrl} target="_blank" rel="noreferrer" className="rounded-full border border-stone-200 bg-white/90 px-5 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-stone-300 hover:bg-white">
             View GitHub
           </Link>
         </div>
 
-        <CodingGitHubSection
-          githubUsername={githubUsername}
-          githubProfileUrl={githubProfileUrl}
-          projects={codingProjects}
-        />
+        <nav aria-label="On this page" className="mt-10 flex flex-wrap items-center gap-2 border-y border-stone-200 py-4">
+          <span className="mr-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+            Jump to
+          </span>
+          {[
+            ["#featured-projects", "Featured projects"],
+            ["#code-highlights", "Code highlights"],
+            ["#more-projects", "More projects"],
+            ["#github", "GitHub"],
+          ].map(([href, label]) => (
+            <a key={href} href={href} className="inline-flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700">
+              {label}
+            </a>
+          ))}
+        </nav>
 
-        <TechShowcaseCard projects={codingProjects} />
+        <section id="featured-projects" aria-labelledby="featured-heading" className="mt-10 scroll-mt-28">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 id="featured-heading" className="text-2xl font-semibold tracking-tight text-slate-900">Featured projects</h2>
+              <p className="mt-2 text-sm leading-7 text-slate-600">
+                A starting point for exploring my work. Open a project for its overview, code, and architecture.
+              </p>
+            </div>
+            <span className="text-sm text-stone-500">{featuredProjects.length} selected projects</span>
+          </div>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} hrefBase="/coding" />
+            ))}
+          </div>
+        </section>
 
-        <section className="mt-12">
+        <section id="code-highlights" aria-labelledby="code-highlights-heading" className="mt-16 scroll-mt-28">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500">
               From the source
             </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
+            <h2 id="code-highlights-heading" className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
               Selected code highlights
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -69,7 +99,7 @@ export default function CodingPortfolioPage() {
             </p>
           </div>
 
-          <div className="mt-6 grid items-start gap-6 lg:grid-cols-2">
+          <div className="mt-6 space-y-3">
             {codeHighlights.map((highlight) => {
               const project = featuredProjects.find(
                 (item) => item.slug === highlight.projectSlug,
@@ -82,21 +112,28 @@ export default function CodingPortfolioPage() {
               return (
                 <details
                   key={`${highlight.projectSlug}-${highlight.sourcePath}`}
-                  className="group min-w-0 rounded-3xl border border-stone-200 bg-white/90 shadow-[0_18px_60px_-40px_rgba(15,23,42,0.16)]"
+                  className="group min-w-0 rounded-2xl border border-stone-200 bg-white/90 transition-colors open:border-stone-300"
                 >
-                  <summary className="cursor-pointer rounded-3xl p-5 text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700 sm:p-6">
-                    <span className="text-sm font-semibold">{project.title}</span>
-                    <h3 className="mt-2 text-base font-semibold">
-                      {highlight.title}
-                    </h3>
-                    <span className="mt-3 block text-xs font-medium text-slate-600 group-open:hidden">
-                      Show code
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl p-5 text-slate-900 transition-colors hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700 sm:px-6 [&::-webkit-details-marker]:hidden">
+                    <span className="min-w-0">
+                      <span className="block text-xs font-medium text-stone-500">{project.title} / {highlight.language}</span>
+                      <span className="mt-1 block text-base font-semibold">{highlight.title}</span>
+                      <span className="mt-2 block text-xs font-medium text-slate-600 sm:hidden">
+                        <span className="group-open:hidden">View code</span>
+                        <span className="hidden group-open:inline">Hide code</span>
+                      </span>
                     </span>
-                    <span className="mt-3 hidden text-xs font-medium text-slate-600 group-open:block">
-                      Hide code
+                    <span className="flex shrink-0 items-center gap-3 text-xs font-medium text-slate-600">
+                      <span className="hidden sm:inline">
+                        <span className="group-open:hidden">View code</span>
+                        <span className="hidden group-open:inline">Hide code</span>
+                      </span>
+                      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 transition-transform group-open:rotate-180">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
                     </span>
                   </summary>
-                  <div className="border-t border-stone-200 p-5 sm:p-6">
+                  <div className="border-t border-stone-200 p-3 sm:p-6">
                     <p className="mb-4 text-sm leading-6 text-slate-600">
                       {highlight.description}
                     </p>
@@ -105,20 +142,20 @@ export default function CodingPortfolioPage() {
                       language={highlight.language}
                       code={highlight.code}
                     />
-                    <p className="mt-3 break-all text-xs text-slate-500">
+                    <p className="mt-3 break-all text-xs leading-6 text-slate-500">
                       Source:{" "}
                       <a
                         href={highlight.sourceUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="font-medium text-slate-700 underline decoration-stone-300 underline-offset-4 hover:text-slate-900"
+                        className="inline-flex min-h-11 items-center py-2 font-medium text-slate-700 underline decoration-stone-300 underline-offset-4 hover:text-slate-900"
                       >
                         {highlight.sourcePath}
                       </a>
                     </p>
                     <Link
                       href={`/coding/${project.slug}`}
-                      className="mt-4 inline-block text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+                      className="mt-2 inline-flex min-h-11 items-center py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
                     >
                       Project details
                     </Link>
@@ -129,19 +166,35 @@ export default function CodingPortfolioPage() {
           </div>
         </section>
 
-        <h2 className="mt-12 text-2xl font-semibold tracking-tight text-slate-900">Featured projects</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} hrefBase="/coding" />
-          ))}
-        </div>
+        <section id="more-projects" aria-labelledby="more-projects-heading" className="mt-16 scroll-mt-28">
+          <h2 id="more-projects-heading" className="text-2xl font-semibold tracking-tight text-slate-900">More projects</h2>
+          <p className="mt-2 text-sm leading-7 text-slate-600">
+            More tools, experiments, and learning projects across my repositories.
+          </p>
+          <details className="group mt-6 rounded-3xl border border-stone-200 bg-white/90">
+            <summary className="cursor-pointer rounded-3xl p-6 font-medium text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">
+              <span className="group-open:hidden">Browse {otherProjects.length} more projects</span>
+              <span className="hidden group-open:inline">Hide additional projects</span>
+            </summary>
+            <div className="grid gap-4 border-t border-stone-200 p-3 sm:p-6 md:grid-cols-2 xl:grid-cols-3">
+              {otherProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} hrefBase="/coding" />
+              ))}
+            </div>
+          </details>
+          <TechShowcaseCard projects={codingProjects} />
+        </section>
 
-        <h2 className="mt-14 text-2xl font-semibold tracking-tight text-slate-900">More projects</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {otherProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} hrefBase="/coding" />
-          ))}
+        <div id="github" className="mt-16 scroll-mt-28">
+          <CodingGitHubSection
+            githubUsername={githubUsername}
+            githubProfileUrl={githubProfileUrl}
+            projects={codingProjects}
+          />
         </div>
+        <a href="#featured-projects" className="mt-8 inline-block rounded-lg py-3 text-sm font-medium text-slate-600 hover:text-slate-900">
+          Back to featured projects
+        </a>
       </section>
     </main>
   );
