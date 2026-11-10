@@ -53,6 +53,7 @@ export default function TechShowcaseCard({
 
       <div
         id="tech-showcase-panel"
+        inert={!open}
         className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="overflow-hidden">
